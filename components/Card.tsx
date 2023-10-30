@@ -42,8 +42,8 @@ const Card = ({
   return (
     <div>
       <div
-        className={`w-[450px] h-[512px] ${
-          isFifth && "h-[414px] mt-10"
+        className={`w-[450px] ${
+          isFifth ? "h-[414px] mt-10" : "h-[512px]"
         } bg-white rounded-[30px] border-[2px] border-b-[5px] ${
           isOpaque && "opacity-50"
         }`}
