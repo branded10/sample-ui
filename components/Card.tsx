@@ -43,7 +43,7 @@ const Card = ({
     <div>
       <div
         className={`w-[450px] h-[512px] ${
-          isFifth && "h-[407px] mt-12"
+          isFifth && "h-[414px] mt-10"
         } bg-white rounded-[30px] border-[2px] border-b-[5px] ${
           isOpaque && "opacity-50"
         }`}
