@@ -52,7 +52,7 @@ const navbar = () => {
               <div className="font-medium">5m</div>
             </div>
             {/* right-7 top-[341px] */}
-            <div className="absolute hidden lg:flex right-[10px] -top-[21px]">
+            <div className="absolute  right-[10px] -top-[21px]">
               <Image src="clock.svg" width={90} height={90} alt="clock" />
             </div>
           </div>
