@@ -43,7 +43,7 @@ const Card = ({
     <div>
       <div
         className={`w-[450px] h-[512px] ${
-          isFifth && "h-[410px] mt-12"
+          isFifth && "h-[407px] mt-12"
         } bg-white rounded-[30px] border-[2px] border-b-[5px] ${
           isOpaque && "opacity-50"
         }`}
@@ -101,7 +101,7 @@ const Card = ({
           )}
           <div
             className={`flex flex-col p-4 rounded-3xl border-[3.5px] w-[400px] h-[215px] ${
-              isFifth && "h-[114px]"
+              isFifth && "h-[113px]"
             } ${isFourth && "h-[225px]"} bg-white`}
             style={{ borderColor: innerBorderColor }}
           >
