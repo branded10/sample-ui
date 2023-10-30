@@ -3,8 +3,8 @@ import Image from "next/image";
 const navbar = () => {
   return (
     <div className="w-full -mt-52 flex justify-between items-center">
-      <div className="flex items-center justify-center ">
-        <div className="relative left-[55px] ">
+      <div className="relative flex items-center justify-center ml-14 ">
+        <div className="absolute -left-[60px] ">
           <Image
             src="/binance_logo.png"
             width={120}
