@@ -100,8 +100,8 @@ const Card = ({
             </div>
           )}
           <div
-            className={`flex flex-col p-4 rounded-3xl border-[3.5px] w-[400px] h-[215px] ${
-              isFifth && "h-[113px]"
+            className={`flex flex-col p-4 rounded-3xl border-[3.5px] w-[400px] ${
+              isFifth ? "h-[113px]" : "h-[215px]"
             } ${isFourth && "h-[225px]"} bg-white`}
             style={{ borderColor: innerBorderColor }}
           >
