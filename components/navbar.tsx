@@ -4,7 +4,7 @@ const navbar = () => {
   return (
     <div className="w-full -mt-52 flex justify-between items-center">
       <div className="relative flex items-center justify-center ml-14 ">
-        <div className="absolute -left-[60px] ">
+        <div className="absolute -left-[68px] ">
           <Image
             src="/binance_logo.png"
             width={120}
