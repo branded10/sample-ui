@@ -56,15 +56,15 @@ const navbar = () => {
               <Image src="clock.svg" width={90} height={90} alt="clock" />
             </div>
           </div>
-          <div className="flex gap-[7px] mr-[50px]">
-            <div className="bg-[#7b6ba7] rounded-3xl p-4">
-              <Image src="question.svg" width={150} height={150} alt="ques" />
+          <div className="flex gap-[7px] mr-[50px] items-center justify-center">
+            <div className="bg-[#7b6ba7] rounded-2xl w-[50px] h-[50px] flex items-center justify-center"> 
+              <Image src="question.svg" width={24} height={24} alt="ques" className="py-3 items-center justify-center" />
             </div>
-            <div className="bg-[#7b6ba7] rounded-3xl p-4">
-              <Image src="trophy.svg" width={150} height={150} alt="ques" />
+            <div className="bg-[#7b6ba7] rounded-2xl w-[50px] h-[50px] flex items-center justify-center">
+              <Image src="trophy.svg" width={24} height={24} alt="ques" className="py-3 items-center justify-center" />
             </div>
-            <div className="bg-[#e9eaeb] rounded-3xl p-4 w-[180px]">
-              <Image src="refresh.svg" width={150} height={150} alt="ques" />
+            <div className="bg-[#e9eaeb] rounded-2xl w-[50px] h-[50px] flex items-center justify-center">
+              <Image src="refresh.svg" width={24} height={24} alt="ques" className="py-3 items-center justify-center" />
             </div>
           </div>
         </div>

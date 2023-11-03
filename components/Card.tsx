@@ -272,7 +272,7 @@ export default function Cards() {
     style={{ width: '100%', overflow: 'hidden' }}
       spaceBetween={209}
       slidesPerView={3}
-      navigation
+      // navigation
       pagination={{ clickable: true }}
       scrollbar={{ draggable: true }}
       // mousewheel={{ forceToAxis: true }}
@@ -290,7 +290,7 @@ export default function Cards() {
         },
       }}
     >
-    {/* <div className="w-full flex overflow-x-auto justify-center items-center scrollbar-hide gap-7"> */}
+    
 
       {cardsData.map((card, index) => {
         const iconPath =
@@ -313,7 +313,7 @@ export default function Cards() {
            </SwiperSlide>
         );
       })}
-      {/* </div> */}
+      
      </Swiper>
   );
 }
