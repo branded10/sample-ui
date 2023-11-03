@@ -1,4 +1,14 @@
+'use client'
+
 import Image from "next/image";
+import  {Swiper, SwiperSlide} from 'swiper/react';
+import  { Navigation, Pagination, Scrollbar, A11y, Mousewheel } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+
+
 
 interface CardProps {
   icon?: any;
@@ -257,31 +267,56 @@ export default function Cards() {
     Later: "timer.svg",
   };
 
-  // const iconPath = liveTextIconMap[liveText];
-
   return (
-    <div className="w-full flex overflow-x-auto justify-center items-center scrollbar-hide gap-7">
+    <Swiper
+    style={{ width: '100%', overflow: 'hidden' }}
+      spaceBetween={209}
+      slidesPerView={3}
+      navigation
+      pagination={{ clickable: true }}
+      scrollbar={{ draggable: true }}
+      // mousewheel={{ forceToAxis: true }}
+      mousewheel={true}
+      breakpoints={{
+        // when window width is >= 640px
+        640: {
+          width: 640,
+          slidesPerView: 1,
+        },
+        // when window width is >= 768px
+        768: {
+          width: 768,
+          slidesPerView: 2,
+        },
+      }}
+    >
+    {/* <div className="w-full flex overflow-x-auto justify-center items-center scrollbar-hide gap-7"> */}
+
       {cardsData.map((card, index) => {
         const iconPath =
-          liveTextIconMap[card.liveText as keyof typeof liveTextIconMap];
-
+        liveTextIconMap[card.liveText as keyof typeof liveTextIconMap];
+        
         const isThirdCard = index === 2;
         const isFourthCard = index === 3;
         const isFifthCard = index === 4;
         return (
-          <Card
-            key={index}
-            {...card}
-            icon={iconPath}
-            isOpaque={index < 2}
-            isFourth={isFourthCard}
-            isFifth={isFifthCard}
-            isThird={isThirdCard}
-          />
+          <SwiperSlide key={index}>
+            <Card
+              key={index}
+              {...card}
+              icon={iconPath}
+              isOpaque={index < 2}
+              isFourth={isFourthCard}
+              isFifth={isFifthCard}
+              isThird={isThirdCard}
+              />
+           </SwiperSlide>
         );
       })}
-    </div>
+      {/* </div> */}
+     </Swiper>
   );
 }
+
 
 // export default Card;
