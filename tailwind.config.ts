@@ -1,4 +1,6 @@
 import type { Config } from "tailwindcss";
+const plugin = require ("tailwindcss/plugin")
+
 
 const config: Config = {
   content: [
@@ -18,6 +20,23 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addUtilities }: any) {
+      addUtilities({
+        '.rotate-y-180': {
+          transform: 'rotateY(180deg)'
+        },
+        '.preserve-3d': {
+          transformStyle: 'preserve-3d',
+        },
+        '.perspective': {
+          perspective: '1000px',
+        },
+        '.backface-hidden': {
+          backfaceVisibility: 'hidden'
+        }
+      })
+    })
+  ],
 };
 export default config;

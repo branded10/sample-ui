@@ -1,6 +1,7 @@
 'use client'
 
 import Image from "next/image";
+import {useState} from 'react';
 import  {Swiper, SwiperSlide} from 'swiper/react';
 import  { Navigation, Pagination, Scrollbar, A11y, Mousewheel } from 'swiper/modules';
 
@@ -51,6 +52,9 @@ const Card = ({
   isFifth,
   isThird,
 }: CardProps) => {
+
+  const [isFlipped, setIsFlipped] = useState(false);
+
   return (
     <div>
       <div
@@ -160,7 +164,7 @@ const Card = ({
                 <div>8.5143 BNB</div>
               </div>
             )}
-            {isFourth && (
+            {/* {isFourth && (
               <div className="text-white font-extrabold flex flex-col justify-center items-center mt-4 gap-1">
                 <div className="bg-[#31D0AA] p-1 w-[250px] py-3 rounded-2xl shadow-sm shadow-black text-center text-md">
                   Enter UP
@@ -169,7 +173,29 @@ const Card = ({
                   Enter Down
                 </div>
               </div>
-            )}
+            )} */}
+
+{isFourth && (
+  <div className="text-white font-extrabold flex flex-col justify-center items-center mt-4 gap-1 perspective">
+    <div
+      className={`flip-card-inner transform transition-transform duration-700 ease-in-out ${isFlipped ? 'rotate-y-180' : ''}`}
+      onClick={() => setIsFlipped(!isFlipped)}
+    >
+      <div className="flip-card-front backface-hidden">
+        <div className="bg-[#31D0AA] p-1 w-[250px] py-3 rounded-2xl shadow-sm shadow-black text-center text-md">
+          Enter UP
+        </div>
+        <div className="bg-[#ED4B9E] p-1 w-[250px] py-3 rounded-2xl shadow-sm shadow-black text-center text-md">
+          Enter Down
+        </div>
+      </div>
+      <div className="flip-card-back backface-hidden bg-[#ED4B9E] p-1 w-[250px] py-3 rounded-2xl shadow-sm shadow-black text-center text-md  rotate-y-180">
+        Back Side Content
+      </div>
+    </div>
+  </div>
+)}
+
             {isFifth && (
               <div className="flex flex-col gap-3 text-[#280D5F] justify-center items-center">
                 <div className="text-md font-bold">Entry starts</div>
