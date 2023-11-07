@@ -1,9 +1,33 @@
+"use client";
+import { useState, useEffect } from "react";
+
 import Image from "next/image";
 
 const navbar = () => {
+  const [isLarge, setIsLarge] = useState(false);
+
+  useEffect(() => {
+    // Run on initial render
+    setIsLarge(window.innerWidth > 968);
+
+    // Set up event listener
+    const handleResize = () => {
+      setIsLarge(window.innerWidth > 968);
+    };
+    window.addEventListener("resize", handleResize);
+
+    // Clean up event listener
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <div className="w-full -mt-52 flex justify-between items-center">
-      <div className="relative flex items-center justify-center ml-14 ">
+      {/* ********************************************************************* */}
+      {/* 1st component */}
+
+      <div className="relative flex items-center justify-center ml-8 ">
         <div className="absolute -left-[30px] ">
           <Image
             src="/binance_logo.png"
@@ -19,7 +43,9 @@ const navbar = () => {
           <div className="text-[#29005c] font-medium text-xs">$228.5332</div>
         </div>
       </div>
-      <div className="hidden justify-between items-center px-[30px]  nav_cards:flex">
+      {/* ******===========*************===========********************* */}
+      {/* 2nd component */}
+      <div className="hidden justify-between items-center px-[30px]  nav_lg:flex">
         <div className="relative left-[107px]">
           <Image src="nav_card.svg" width={100} height={100} alt="nav_cards" />
         </div>
@@ -44,16 +70,27 @@ const navbar = () => {
           </div>
         </div>
       </div>
-      <div className="w-[380px]">
-        <div className="flex p-5 items-center">
-          <div className="relative">
-            <div className="bg-white rounded-full flex justify-center items-center px-2 py-1 pr-[65px] gap-2 mr-4">
-              <div className="text-lg text-[#7836d3] font-extrabold">00:38</div>
-              <div className="font-medium text-xs">5m</div>
+      {/* ******===========*************===========********************* */}
+      {/* 3rd component */}
+      <div className="w-[250px] nav_lg:w-[390px]">
+        <div className="flex nav_md:flex-row p-5 flex-row-reverse items-center">
+          <div className="relative nav_md:mr-3 -mr-1 ml-2">
+            <div className="bg-white rounded-lg rounded-bl-3xl nav_lg:rounded-full flex nav_lg:flex-row flex-col  justify-center items-center px-2 nav_lg:py-1 pr-[30px] nav_lg:pr-[65px] nav_lg:gap-2 mr-4">
+              <div className="nav_lg:text-lg text-sm text-[#7836d3] font-extrabold">
+                00:38
+              </div>
+              <div className="font-medium text-xs ">5m</div>
             </div>
             {/* right-7 top-[341px] */}
-            <div className="absolute  right-[8px] -top-[21px]">
-              <Image src="clock.svg" width={70} height={70} alt="clock" />
+            <div className="absolute  nav_lg:right-[5px] nav_lg:-top-[21px] -right-[5px] -top-[5px] ">
+              <Image
+                src="clock.svg"
+                width={isLarge ? 70 : 50}
+                height={isLarge ? 70 : 50}
+                // width={70}
+                // height={70}
+                alt="clock"
+              />
             </div>
           </div>
           <div className="flex gap-[7px] mr-[1px] items-center justify-center">
@@ -75,14 +112,16 @@ const navbar = () => {
                 className="py-3 items-center justify-center"
               />
             </div>
-            <div className="bg-[#e9eaeb] rounded-2xl w-[50px] h-[50px] flex items-center justify-center">
-              <Image
-                src="refresh.svg"
-                width={24}
-                height={24}
-                alt="ques"
-                className="py-3 items-center justify-center"
-              />
+            <div className="hidden nav_lg:flex">
+              <div className="bg-[#e9eaeb] rounded-2xl w-[50px] h-[50px]  items-center justify-center flex">
+                <Image
+                  src="refresh.svg"
+                  width={24}
+                  height={24}
+                  alt="ques"
+                  className="py-3 items-center justify-center"
+                />
+              </div>
             </div>
           </div>
         </div>
