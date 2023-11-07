@@ -536,10 +536,11 @@ export default function Cards() {
   return (
     <Swiper
       style={{ width: "100%", overflow: "hidden" }}
-      spaceBetween={209}
+      initialSlide={1}
+      spaceBetween={5}
       slidesPerView={4}
-      centeredSlides={true}
-      centeredSlidesBounds={true}
+      // centeredSlides={true}
+      // centeredSlidesBounds={true}
       scrollbar={false}
       freeMode={true}
       // navigation
@@ -560,6 +561,9 @@ export default function Cards() {
         },
       }}
     >
+      <SwiperSlide></SwiperSlide>
+      <SwiperSlide></SwiperSlide>
+      <SwiperSlide></SwiperSlide>
       {cardsData.map((card, index) => {
         const iconPath =
           liveTextIconMap[card.liveText as keyof typeof liveTextIconMap];
@@ -597,6 +601,8 @@ export default function Cards() {
           );
         }
       })}
+
+      {/* <SwiperSlide></SwiperSlide> */}
     </Swiper>
   );
 }
