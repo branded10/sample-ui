@@ -269,9 +269,9 @@ const FlipCard = ({ card, icon, isOpaque, isFourth }: FlipCardProps) => {
             <div className="card-content">
               {BackCard({ ...card, icon, isFourth, isOpaque, handleFlip })}
             </div>
-            <button className="flip-button" onClick={handleFlip}>
+            {/* <button className="flip-button" onClick={handleFlip}>
               Flip
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

@@ -15,6 +15,8 @@ const config: Config = {
       },
       screens: {
         nav_cards: "1282px",
+        nav_lg: "968px",
+        nav_md: "576px"
       },
     },
   },

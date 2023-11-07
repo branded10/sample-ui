@@ -44,11 +44,11 @@ const navbar = () => {
           </div>
         </div>
       </div>
-      <div className="w-[600px]">
+      <div className="w-[380px]">
         <div className="flex p-5 items-center">
           <div className="relative">
-            <div className="bg-white rounded-full flex justify-center items-center px-3 py-2 pr-[65px] gap-2 mr-4">
-              <div className="text-xl text-[#7836d3] font-extrabold">00:38</div>
+            <div className="bg-white rounded-full flex justify-center items-center px-2 py-1 pr-[65px] gap-2 mr-4">
+              <div className="text-lg text-[#7836d3] font-extrabold">00:38</div>
               <div className="font-medium text-xs">5m</div>
             </div>
             {/* right-7 top-[341px] */}
