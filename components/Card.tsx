@@ -23,6 +23,7 @@ interface CardProps {
   txtColor?: string;
   borderColor?: string;
   innerBorderColor?: string;
+  navColor?: string;
   cardNumber?: string;
   lastPrice?: string;
   priceChange?: string;
@@ -63,10 +64,10 @@ const FrontCard = ({
 }: CardProps) => {
   return (
     <div
-      className={`w-[320px]  bg-white rounded-[30px] border-[2px] border-b-[5px] ${
+      className={`w-[320px]  bg-white rounded-[30px]  border-b-[6px] border-gray-200 ${
         isOpaque && "opacity-50"
       }`}
-      style={{ borderColor: borderColor }}
+      // style={{ borderColor: borderColor }}
     >
       <div
         className={`flex justify-between items-center px-4 py-2 ${
@@ -85,7 +86,7 @@ const FrontCard = ({
           </div>
         </div>
 
-        <div className={`text-[#7836db] font-medium`}>{cardNumber}</div>
+        <div className={`text-white font-medium`}>{cardNumber}</div>
       </div>
       {/* bg-[#e9e6ef] h-2.5 dark:bg-[#e9e6ef] */}
 
@@ -166,79 +167,63 @@ const BackCard = ({
   icon,
   handleFlip,
 }: CardProps) => {
+  const [value, setValue] = useState("");
+
+  const handleChange = (event: any) => {
+    setValue(event.target.value);
+  };
+
   return (
     <div
-      className={`w-[320px]  bg-white rounded-[30px] border-[2px] border-b-[5px] ${
+      className={`w-[320px] h-[382px] -mt-[3px] bg-white rounded-[30px] border-[2px] border-b-[5px] border-red-500 ${
         isOpaque && "opacity-50"
       }`}
       style={{ borderColor: borderColor }}
     >
       <div
-        className={`flex justify-between items-center px-4 py-2 ${
-          isFourth && "bg-[#7645D9]"
+        className={`flex justify-between items-center px-4 py-4 ${
+          isFourth && "bg-[#ebeff4]"
         }  rounded-t-[30px] overflow-hidden `}
       >
-        {/* <div className="flex items-center">
-          <div>
-            <Image src={icon} width={20} height={20} alt="play" />
+        <div className="flex items-center gap-2">
+          <div className="cursor-pointer" onClick={handleFlip}>
+            <Image src={"./left_arrow.svg"} width={20} height={20} alt="play" />
           </div>
           <div
             className={`ml-1 font-extrabold text-sm`}
-            style={{ color: txtColor }}
+            style={{ color: "#280d5f" }}
           >
-            {liveText}
+            Set Position
           </div>
-        </div> */}
+        </div>
 
-        <div className={`text-[#7836db] font-medium`}>{cardNumber}</div>
+        <div className="flex bg-[#31d0aa]  rounded-md p-1 px-2 text-white text-xs justify-center items-center">
+          <Image src={"./up_arrow.svg"} width={20} height={20} alt="up_arrow" />
+          <p className="">UP</p>
+        </div>
       </div>
       {/* bg-[#e9e6ef] h-2.5 dark:bg-[#e9e6ef] */}
 
-      <div className={`flex flex-col justify-center items-center mt-4`}>
-        <div className={`-mb-[2px]`}>
-          <Image src="card_up_white.svg" width={250} height={380} alt="image" />
-        </div>
-
-        {/* middle part of the card */}
-        <div
-          className={`flex flex-col p-4 rounded-2xl border-[2.5px] w-[285px] ${
-            isFourth ? "h-[171px]" : ""
-          } bg-white`}
-          style={{ borderColor: innerBorderColor }}
-        >
-          {!isFourth && (
-            <div className={`font-extrabold text-xs text-[#7b6ba7] mb-[8px]`}>
-              LAST PRICE
-            </div>
-          )}
-
-          <div className="flex justify-between items-center font-extrabold text-md text-[#280D5F]">
-            <div>Prize Pool:</div>
-            <div>8.5143 BNB</div>
-          </div>
-
-          <div className="text-white font-extrabold flex flex-col justify-center items-center mt-4 gap-[5px]">
-            <div
-              className="relative active:top-[3px] bg-[#31D0AA] cursor-pointer hover:opacity-50 active:shadow-none p-1 w-[250px] py-3 rounded-2xl shadow-sm shadow-black text-center text-md"
-              onClick={handleFlip}
-            >
-              Enter UP
-            </div>
-            <div
-              className="relative bg-[#ED4B9E] active:top-[3px] cursor-pointer hover:opacity-50 active:shadow-none p-1 w-[250px] py-3 rounded-2xl shadow-sm shadow-black text-center text-md"
-              onClick={handleFlip}
-            >
-              Enter Down
-            </div>
+      <div className="flex flex-col">
+        <div className="flex justify-between items-center py-2 pt-6 px-8 text-xs">
+          <div className="text-[#8377b0] font-semibold">Commit:</div>
+          <div className="flex justify-center items-center gap-1">
+            <Image src={"bnb_logo.svg"} width={20} height={20} alt="bnb_logo" />
+            <p className="text-[#3f2770] font-extrabold">BNB</p>
           </div>
         </div>
 
-        <div className={`-mt-[2px]`}>
-          <Image
-            src="card_down_pink.svg"
-            width={250}
-            height={380}
-            alt="image"
+        <div className="self-center">
+          <input
+            type="text"
+            pattern="^[0-9]*[.,]?[0-9]{0,18}$"
+            inputMode="decimal"
+            min="0"
+            placeholder="0.0"
+            value={value}
+            onChange={handleChange}
+            className="px-4 py-4 w-64 bg-gray-200 rounded-xl shadow-inner focus:outline-none focus:ring-0"
+            style={{ textAlign: "right" }}
           />
         </div>
       </div>
@@ -284,6 +269,7 @@ const Card = ({
   txtColor,
   borderColor,
   innerBorderColor,
+  navColor,
   cardNumber,
   lastPrice,
   priceChange,
@@ -305,14 +291,17 @@ const Card = ({
       className={`w-[320px] ${isFifth ? "h-[305px] mt-10" : "h-[372px]"} ${
         isThird ? "h-[372px]" : ""
       } bg-white rounded-[30px] border-[2px] border-b-[5px] ${
-        isOpaque && "opacity-50"
+        isOpaque &&
+        "opacity-50 hover:opacity-100 transition-all ease-in-out duration-300 delay-100"
       }`}
       style={{ borderColor: borderColor }}
     >
       <div
         className={`flex justify-between items-center px-4 py-2 ${
           isFourth && "bg-[#7645D9]"
-        } ${isFifth && "bg-[#E7E3EB]"} rounded-t-[30px] overflow-hidden `}
+        } ${isFifth && "bg-[#E7E3EB]"} rounded-t-[30px] overflow-hidden ${
+          !isThird && !isFifth && "bg-[#d9d9e8]"
+        } `}
       >
         <div className="flex items-center">
           <div>
@@ -326,7 +315,13 @@ const Card = ({
           </div>
         </div>
 
-        <div className={`text-[#7836db] font-medium`}>{cardNumber}</div>
+        <div
+          className={`text-[#7836db] ${
+            isOpaque && "text-[#c1c7d5]"
+          } font-medium`}
+        >
+          {cardNumber}
+        </div>
       </div>
       {/* bg-[#e9e6ef] h-2.5 dark:bg-[#e9e6ef] */}
       {isThird && (
@@ -474,6 +469,7 @@ const cardsData = [
     txtColor: "#bdc3ce",
     borderColor: "#cfd3da",
     innerBorderColor: "#ef449c",
+    navColor: "#d9d9e8",
     cardNumber: "#218484",
     lastPrice: "$227.5332",
     priceChange: "$-0.1066",
@@ -481,12 +477,28 @@ const cardsData = [
     prizePool: "8.5143BNB",
   },
   {
+    pay1: "1.94x",
+    pay2: "2.06x",
+    liveText: "Expired",
+    txtColor: "#bdc3ce",
+    borderColor: "#cfd3da",
+    innerBorderColor: "#ef449c",
+    navColor: "#d9d9e8",
+    cardNumber: "#218484",
+    lastPrice: "$227.5332",
+    priceChange: "$-0.1066",
+    lockedPrice: "$228.9464",
+    prizePool: "8.5143BNB",
+  },
+
+  {
     pay1: "1.76x",
     pay2: "2.32x",
     liveText: "Expired",
     txtColor: "#bdc3ce",
     borderColor: "#cfd3da",
     innerBorderColor: "#ef449c",
+    navColor: "#d9d9e8",
     cardNumber: "#218485",
     lastPrice: "$228.9533",
     priceChange: "$-0.5791",
@@ -523,6 +535,13 @@ const cardsData = [
     innerBorderColor: "#cfd3da",
     cardNumber: "#218488",
   },
+  {
+    liveText: "Later",
+    txtColor: "#000",
+    borderColor: "#cfd3da",
+    innerBorderColor: "#cfd3da",
+    cardNumber: "#218488",
+  },
 ];
 
 export default function Cards() {
@@ -537,8 +556,8 @@ export default function Cards() {
     <Swiper
       style={{ width: "100%", overflow: "hidden" }}
       initialSlide={1}
-      spaceBetween={5}
-      slidesPerView={4}
+      spaceBetween={1}
+      slidesPerView={2.2}
       // centeredSlides={true}
       // centeredSlidesBounds={true}
       scrollbar={false}
@@ -550,9 +569,14 @@ export default function Cards() {
       mousewheel={true}
       breakpoints={{
         // when window width is >= 640px
+        100: {
+          width: 100,
+          slidesPerView: 5,
+        },
+
         640: {
           width: 640,
-          slidesPerView: 1,
+          slidesPerView: 2,
         },
         // when window width is >= 768px
         768: {
@@ -568,17 +592,17 @@ export default function Cards() {
         const iconPath =
           liveTextIconMap[card.liveText as keyof typeof liveTextIconMap];
 
-        const isThirdCard = index === 2;
-        const isFourthCard = index === 3;
-        const isFifthCard = index === 4;
-        if (index === 3) {
+        const isThirdCard = index === 3;
+        const isFourthCard = index === 4;
+        const isFifthCard = index === 5 || index === 6;
+        if (index === 4) {
           return (
             <SwiperSlide key={index}>
               <FlipCard
                 key={index}
                 card={card}
                 icon={iconPath}
-                isOpaque={index < 2}
+                isOpaque={index < 3}
                 isFourth={isFourthCard}
                 isFifth={isFifthCard}
                 isThird={isThirdCard}
@@ -592,7 +616,7 @@ export default function Cards() {
                 key={index}
                 {...card}
                 icon={iconPath}
-                isOpaque={index < 2}
+                isOpaque={index < 3}
                 isFourth={isFourthCard}
                 isFifth={isFifthCard}
                 isThird={isThirdCard}

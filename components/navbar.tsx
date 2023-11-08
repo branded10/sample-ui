@@ -112,7 +112,7 @@ const navbar = () => {
                 className="py-3 items-center justify-center"
               />
             </div>
-            <div className="hidden nav_lg:flex">
+            <div className="hidden nav_lg:flex cursor-not-allowed">
               <div className="bg-[#e9eaeb] rounded-2xl w-[50px] h-[50px]  items-center justify-center flex">
                 <Image
                   src="refresh.svg"
