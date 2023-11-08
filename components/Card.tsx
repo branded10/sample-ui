@@ -556,7 +556,7 @@ export default function Cards() {
     <Swiper
       style={{ width: "100%", overflow: "hidden" }}
       initialSlide={1}
-      spaceBetween={1}
+      spaceBetween={window.innerWidth > 640 ? 50 : 10}
       slidesPerView={2.2}
       // centeredSlides={true}
       // centeredSlidesBounds={true}

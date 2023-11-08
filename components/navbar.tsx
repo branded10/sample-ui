@@ -31,13 +31,23 @@ const navbar = () => {
         <div className="absolute -left-[30px] ">
           <Image
             src="/binance_logo.png"
-            width={80}
-            height={80}
+            width={isLarge ? 80 : 60}
+            height={isLarge ? 80 : 60}
             alt="Binance image"
           />
         </div>
-        <div className="flex items-center justify-center bg-[#ffffff] px-5 py-1 pl-[40px] rounded-full">
-          <div className="mr-[20px] font-extrabold text-[#29005c] text-xl">
+        <div
+          className={`flex nav_lg:flex-row flex-col items-center justify-center bg-[#ffffff] ${
+            isLarge
+              ? "px-5 py-1 pl-[40px] rounded-full"
+              : "px-5 py-1 pl-[25px] rounded-lg rounded-br-3xl"
+          }`}
+        >
+          <div
+            className={` ${
+              isLarge ? "mr-[20px]" : ""
+            } font-extrabold text-[#29005c] nav_lg:text-xl text-sm`}
+          >
             BNBUSD
           </div>
           <div className="text-[#29005c] font-medium text-xs">$228.5332</div>

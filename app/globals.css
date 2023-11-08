@@ -2,10 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  background-color: #c6d1eb;
+/* :root {
+  
+  overflow: scroll;
+
+} */
+
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  /* font-family: "Poppins", sans-serif; */
+  scroll-behavior: smooth;
+  /* color-scheme: dark; */
+}
+
+
+body {
+  background-color: #c6d1eb;
 }
 /* #e9e6ef */
 .custom_shadow {
