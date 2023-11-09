@@ -17,6 +17,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
+export { UpIndicator, DownIndicator } from "./utils/MarketIndicator";
+
 interface CardProps {
   icon?: any;
   liveText?: string;
@@ -37,6 +39,9 @@ interface CardProps {
   isFifth?: boolean;
   isThird?: boolean;
   handleFlip?: () => void;
+  buttonClicked?: string;
+  handleUpClick?: () => void;
+  handleDownClick?: () => void;
 }
 
 interface FlipCardProps extends CardProps {
@@ -61,6 +66,8 @@ const FrontCard = ({
   isOpaque,
   icon,
   handleFlip,
+  handleUpClick,
+  handleDownClick,
 }: CardProps) => {
   return (
     <div
@@ -113,27 +120,16 @@ const FrontCard = ({
             <div>8.5143 BNB</div>
           </div>
 
-          {/* {isFourth && (
-              <div className="text-white font-extrabold flex flex-col justify-center items-center mt-4 gap-1">
-                <div className="bg-[#31D0AA] p-1 w-[250px] py-3 rounded-2xl shadow-sm shadow-black text-center text-md">
-                  Enter UP
-                  </div>
-                <div className="bg-[#ED4B9E] p-1 w-[250px] py-3 rounded-2xl shadow-sm shadow-black text-center text-md">
-                  Enter Down
-                  </div>
-                  </div>
-                )} */}
-
           <div className="text-white font-extrabold flex flex-col justify-center items-center mt-4 gap-[5px]">
             <div
               className="relative active:top-[3px] bg-[#31D0AA] cursor-pointer hover:opacity-50 active:shadow-none p-1 w-[250px] py-3 rounded-2xl shadow-sm shadow-black text-center text-md"
-              onClick={handleFlip}
+              onClick={handleUpClick}
             >
               Enter UP
             </div>
             <div
               className="relative bg-[#ED4B9E] active:top-[3px] cursor-pointer hover:opacity-50 active:shadow-none p-1 w-[250px] py-3 rounded-2xl shadow-sm shadow-black text-center text-md"
-              onClick={handleFlip}
+              onClick={handleDownClick}
             >
               Enter Down
             </div>
@@ -166,6 +162,7 @@ const BackCard = ({
   isOpaque,
   icon,
   handleFlip,
+  buttonClicked,
 }: CardProps) => {
   const [value, setValue] = useState("");
 
@@ -197,9 +194,19 @@ const BackCard = ({
           </div>
         </div>
 
-        <div className="flex bg-[#31d0aa]  rounded-md p-1 px-2 text-white text-xs justify-center items-center">
-          <Image src={"./up_arrow.svg"} width={20} height={20} alt="up_arrow" />
-          <p className="">UP</p>
+        <div
+          className={`flex ${
+            buttonClicked === "up" ? "bg-[#31d0aa]" : "bg-[#ed4b9e]"
+          } rounded-md p-1 px-2 text-white text-xs justify-center items-center`}
+        >
+          <Image
+            src={"./up_arrow.svg"}
+            width={20}
+            height={20}
+            alt="up_arrow"
+            className={`${buttonClicked === "down" ? "rotate-180" : ""}`}
+          />
+          <p className="">{buttonClicked === "up" ? "Up" : "Down"}</p>
         </div>
       </div>
       {/* bg-[#e9e6ef] h-2.5 dark:bg-[#e9e6ef] */}
@@ -233,8 +240,19 @@ const BackCard = ({
 
 const FlipCard = ({ card, icon, isOpaque, isFourth }: FlipCardProps) => {
   const [isFlipped, setFlipped] = useState(false);
+  const [buttonClicked, setButtonClicked] = useState("");
 
   const handleFlip = () => {
+    setFlipped(!isFlipped);
+  };
+
+  const handleUpClick = () => {
+    setButtonClicked("up");
+    setFlipped(!isFlipped);
+  };
+
+  const handleDownClick = () => {
+    setButtonClicked("down");
     setFlipped(!isFlipped);
   };
 
@@ -244,7 +262,15 @@ const FlipCard = ({ card, icon, isOpaque, isFourth }: FlipCardProps) => {
         <div className="flip-card-inner">
           <div className="flip-card-front">
             <div className="card-content">
-              {FrontCard({ ...card, icon, isFourth, isOpaque, handleFlip })}
+              {FrontCard({
+                ...card,
+                icon,
+                isFourth,
+                isOpaque,
+                handleFlip,
+                handleUpClick,
+                handleDownClick,
+              })}
             </div>
             {/* <button className="flip-button" onClick={handleFlip}>
               Flip
@@ -252,7 +278,14 @@ const FlipCard = ({ card, icon, isOpaque, isFourth }: FlipCardProps) => {
           </div>
           <div className="flip-card-back">
             <div className="card-content">
-              {BackCard({ ...card, icon, isFourth, isOpaque, handleFlip })}
+              {BackCard({
+                ...card,
+                icon,
+                isFourth,
+                isOpaque,
+                handleFlip,
+                buttonClicked,
+              })}
             </div>
             {/* <button className="flip-button" onClick={handleFlip}>
               Flip
@@ -553,81 +586,83 @@ export default function Cards() {
   };
 
   return (
-    <Swiper
-      style={{ width: "100%", overflow: "hidden" }}
-      initialSlide={1}
-      spaceBetween={window.innerWidth > 640 ? 50 : 10}
-      slidesPerView={2.2}
-      // centeredSlides={true}
-      // centeredSlidesBounds={true}
-      scrollbar={false}
-      freeMode={true}
-      // navigation
-      pagination={{ clickable: true }}
-      // scrollbar={{ draggable: true }}
-      // mousewheel={{ forceToAxis: true }}
-      mousewheel={true}
-      breakpoints={{
-        // when window width is >= 640px
-        100: {
-          width: 100,
-          slidesPerView: 5,
-        },
+    <div className="w-full min-w-[500px]">
+      <Swiper
+        style={{ width: "100%", overflow: "hidden" }}
+        initialSlide={1}
+        spaceBetween={window.innerWidth > 340 ? 30 : 10}
+        slidesPerView={2.2}
+        // centeredSlides={true}
+        // centeredSlidesBounds={true}
+        scrollbar={false}
+        freeMode={true}
+        // navigation
+        pagination={{ clickable: true }}
+        // scrollbar={{ draggable: true }}
+        // mousewheel={{ forceToAxis: true }}
+        mousewheel={true}
+        breakpoints={{
+          // when window width is >= 640px
+          100: {
+            width: 100,
+            slidesPerView: 5,
+          },
 
-        640: {
-          width: 640,
-          slidesPerView: 2,
-        },
-        // when window width is >= 768px
-        768: {
-          width: 768,
-          slidesPerView: 2,
-        },
-      }}
-    >
-      <SwiperSlide></SwiperSlide>
-      <SwiperSlide></SwiperSlide>
-      <SwiperSlide></SwiperSlide>
-      {cardsData.map((card, index) => {
-        const iconPath =
-          liveTextIconMap[card.liveText as keyof typeof liveTextIconMap];
+          640: {
+            width: 640,
+            slidesPerView: 2,
+          },
+          // when window width is >= 768px
+          768: {
+            width: 768,
+            slidesPerView: 2,
+          },
+        }}
+      >
+        <SwiperSlide></SwiperSlide>
+        <SwiperSlide></SwiperSlide>
+        <SwiperSlide></SwiperSlide>
+        {cardsData.map((card, index) => {
+          const iconPath =
+            liveTextIconMap[card.liveText as keyof typeof liveTextIconMap];
 
-        const isThirdCard = index === 3;
-        const isFourthCard = index === 4;
-        const isFifthCard = index === 5 || index === 6;
-        if (index === 4) {
-          return (
-            <SwiperSlide key={index}>
-              <FlipCard
-                key={index}
-                card={card}
-                icon={iconPath}
-                isOpaque={index < 3}
-                isFourth={isFourthCard}
-                isFifth={isFifthCard}
-                isThird={isThirdCard}
-              />
-            </SwiperSlide>
-          );
-        } else {
-          return (
-            <SwiperSlide key={index}>
-              <Card
-                key={index}
-                {...card}
-                icon={iconPath}
-                isOpaque={index < 3}
-                isFourth={isFourthCard}
-                isFifth={isFifthCard}
-                isThird={isThirdCard}
-              />
-            </SwiperSlide>
-          );
-        }
-      })}
+          const isThirdCard = index === 3;
+          const isFourthCard = index === 4;
+          const isFifthCard = index === 5 || index === 6;
+          if (index === 4) {
+            return (
+              <SwiperSlide key={index}>
+                <FlipCard
+                  key={index}
+                  card={card}
+                  icon={iconPath}
+                  isOpaque={index < 3}
+                  isFourth={isFourthCard}
+                  isFifth={isFifthCard}
+                  isThird={isThirdCard}
+                />
+              </SwiperSlide>
+            );
+          } else {
+            return (
+              <SwiperSlide key={index}>
+                <Card
+                  key={index}
+                  {...card}
+                  icon={iconPath}
+                  isOpaque={index < 3}
+                  isFourth={isFourthCard}
+                  isFifth={isFifthCard}
+                  isThird={isThirdCard}
+                />
+              </SwiperSlide>
+            );
+          }
+        })}
 
-      {/* <SwiperSlide></SwiperSlide> */}
-    </Swiper>
+        {/* <SwiperSlide></SwiperSlide> */}
+      </Swiper>
+    </div>
   );
 }
 

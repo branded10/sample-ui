@@ -103,7 +103,7 @@ const navbar = () => {
               />
             </div>
           </div>
-          <div className="flex gap-[7px] mr-[1px] items-center justify-center">
+          <div className="flex gap-[2px] nav_md:gap-[7px] mr-[1px] items-center justify-center">
             <div className="bg-[#7b6ba7] rounded-2xl w-[50px] h-[50px] flex items-center justify-center">
               <Image
                 src="question.svg"
