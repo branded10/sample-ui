@@ -23,6 +23,7 @@
   width: 100%;
   height: 100%;
   margin: 0px;
+ 
 }
 /* #e9e6ef */
 .custom_shadow {
@@ -122,8 +123,23 @@
 
 
 
-.swiper-wrapper {
+/* .swiper-wrapper {
   justify-content: center;
+  margin-left: 1000px;
+} */
+
+@media (max-width: 640px) {
+  .swiper-wrapper {
+    justify-content: center;
+    /* margin-left: 0; */
+  }
+}
+
+@media (min-width: 641px) {
+  .swiper-wrapper {
+    justify-content: center;
+    /* margin-left: 1000px; */
+  }
 }
 
 /* ============ CARD.tsx ====================================================================== */

@@ -23,7 +23,7 @@ const navbar = () => {
   }, []);
 
   return (
-    <div className="w-full -mt-52 flex justify-between items-center">
+    <div className="w-full min-w-[100px] -mt-52 flex nav_sm:flex-row flex-col justify-between items-center">
       {/* ********************************************************************* */}
       {/* 1st component */}
 
@@ -82,7 +82,7 @@ const navbar = () => {
       </div>
       {/* ******===========*************===========********************* */}
       {/* 3rd component */}
-      <div className="w-[250px] nav_lg:w-[390px]">
+      <div className="w-full nav_sm:w-[250px] nav_lg:w-[390px] flex justify-center items-center">
         <div className="flex nav_md:flex-row p-5 flex-row-reverse items-center">
           <div className="relative nav_md:mr-3 -mr-1 ml-2">
             <div className="bg-white rounded-lg rounded-bl-3xl nav_lg:rounded-full flex nav_lg:flex-row flex-col  justify-center items-center px-2 nav_lg:py-1 pr-[30px] nav_lg:pr-[65px] nav_lg:gap-2 mr-4">
@@ -104,7 +104,7 @@ const navbar = () => {
             </div>
           </div>
           <div className="flex gap-[2px] nav_md:gap-[7px] mr-[1px] items-center justify-center">
-            <div className="bg-[#7b6ba7] rounded-2xl w-[50px] h-[50px] flex items-center justify-center">
+            <div className="bg-[#7b6ba7] rounded-2xl w-[40px] h-[40px] nav_sm:w-[50px] nav_sm:h-[50px] flex items-center justify-center">
               <Image
                 src="question.svg"
                 width={24}
@@ -113,7 +113,7 @@ const navbar = () => {
                 className="py-3 items-center justify-center"
               />
             </div>
-            <div className="bg-[#7b6ba7] rounded-2xl w-[50px] h-[50px] flex items-center justify-center">
+            <div className="bg-[#7b6ba7] rounded-2xl w-[40px] h-[40px] nav_sm:w-[50px] nav_sm:h-[50px] flex items-center justify-center">
               <Image
                 src="trophy.svg"
                 width={24}
