@@ -249,33 +249,13 @@ export function DownIndicator({ marketStatus, downText }: SvgProps) {
 }
 
 function MarketIndicator({ marketStatus, upText, downText }: SvgProps) {
-  return (
-    <>
-      {/* marketStatus={marketStatus} upText={upText} */}
-      <UpIndicator marketStatus={marketStatus} upText={upText} />
-
-      {/* marketStatus={marketStatus} downText={downText} */}
-      <DownIndicator marketStatus={marketStatus} downText={downText} />
-    </>
-  );
+  if (marketStatus === "up") {
+    return <UpIndicator marketStatus={marketStatus} upText={upText} />;
+  } else if (marketStatus === "down") {
+    return <DownIndicator marketStatus={marketStatus} downText={downText} />;
+  } else {
+    return null; // or some default case
+  }
 }
 
 export default MarketIndicator;
-
-// function getIndicatorType(marketStatus) {
-//     // Implement your logic here to determine whether marketStatus corresponds to 'up' or 'down'
-//   }
-
-//   function MarketIndicator({ marketStatus, upText, downText }: SvgProps) {
-//     const indicatorType = getIndicatorType(marketStatus);
-
-//     if (indicatorType === 'up') {
-//       return <UpIndicator marketStatus={marketStatus} upText={upText} />;
-//     } else if (indicatorType === 'down') {
-//       return <DownIndicator marketStatus={marketStatus} downText={downText} />;
-//     } else {
-//       return null; // or some default case
-//     }
-//   }
-
-//   export default MarketIndicator;
