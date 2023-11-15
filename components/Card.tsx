@@ -375,7 +375,7 @@ const Card = ({
           <div className={`-mb-[2px]`}>
             <Image
               // src="card_up_white.svg"
-              src={UpIndicator}
+              src={MarketIndicator("", "up")}
               width={250}
               height={380}
               alt="image"

@@ -258,4 +258,6 @@ function MarketIndicator({ marketStatus, upText, downText }: SvgProps) {
   }
 }
 
+// you need to pass undefined or "" in MarketInbdicator() in card.tsx <Image />  check that
+
 export default MarketIndicator;
