@@ -1,11 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, {
   Navigation,
   Pagination,
+  FreeMode,
   Scrollbar,
   A11y,
   Mousewheel,
@@ -17,11 +18,10 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
-export { UpIndicator, DownIndicator } from "./utils/MarketIndicator";
-
-import Slider from "react-slick";
-// import "~slick-carousel/slick/slick.css";
-// import "~slick-carousel/slick/slick-theme.css";
+import MarketIndicator, {
+  UpIndicator,
+  DownIndicator,
+} from "./utils/MarketIndicator";
 
 // Install the modules
 // SwiperCore.use([Navigation, Pagination, Mousewheel]);
@@ -374,7 +374,8 @@ const Card = ({
         {!isFifth && (
           <div className={`-mb-[2px]`}>
             <Image
-              src="card_up_white.svg"
+              // src="card_up_white.svg"
+              src={UpIndicator}
               width={250}
               height={380}
               alt="image"
@@ -384,7 +385,8 @@ const Card = ({
         {isFifth && (
           <div className={`-mb-[2px]`}>
             <Image
-              src="card_up_last.svg"
+              // src="card_up_last.svg"
+              src={UpIndicator}
               width={250}
               height={380}
               alt="image"
@@ -592,16 +594,62 @@ export default function Cards() {
     Later: "timer.svg",
   };
 
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-  };
+  // const [zoomLevel, setZoomLevel] = useState(window.devicePixelRatio);
+  // const [slidesPerView, setSlidesPerView] = useState(3);
+
+  // const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  // useEffect(() => {
+  //   const handleResize = () => setWindowWidth(window.innerWidth);
+  //   window.addEventListener("resize", handleResize);
+  //   return () => window.removeEventListener("resize", handleResize);
+  // }, []);
+
+  // let slidesPerView;
+  // if (windowWidth >= 640) {
+  //   slidesPerView = 5;
+  // } else if (windowWidth >= 480) {
+  //   slidesPerView = 3;
+  // } else {
+  //   slidesPerView = 1;
+  // }
+
+  // useEffect(() => {
+  //   if (zoomLevel <= 0.75) {
+  //     setSlidesPerView(1);
+  //   } else if (zoomLevel <= 1.25) {
+  //     setSlidesPerView(2);
+  //   } else {
+  //     setSlidesPerView(3);
+  //   }
+  // }, [zoomLevel]);
+
+  // useEffect(() => {
+  //   const handleResize = () => setZoomLevel(window.devicePixelRatio);
+  //   window.addEventListener("resize", handleResize);
+  //   return () => window.removeEventListener("resize", handleResize);
+  // }, []);
 
   return (
-    <div>
+    <Swiper
+      style={{ width: "100%" }}
+      // install Swiper modules
+      modules={[Navigation, Pagination, Scrollbar, A11y]}
+      centeredSlides={true}
+      spaceBetween={25}
+      initialSlide={4}
+      slidesPerView={5}
+      // navigation
+      // centeredSlidesBounds={true}
+      // pagination={{ clickable: true }}
+      scrollbar={{ draggable: true }}
+      onSwiper={(swiper) => console.log(swiper)}
+      onSlideChange={() => console.log("slide change")}
+    >
+      <SwiperSlide></SwiperSlide>
+      {/* <SwiperSlide></SwiperSlide>
+      <SwiperSlide></SwiperSlide> */}
+
       {cardsData.map((card, index) => {
         const iconPath =
           liveTextIconMap[card.liveText as keyof typeof liveTextIconMap];
@@ -609,39 +657,37 @@ export default function Cards() {
         const isThirdCard = index === 3;
         const isFourthCard = index === 4;
         const isFifthCard = index === 5 || index === 6;
+
         if (index === 4) {
           return (
-            // <SwiperSlide key={index}>
-            <FlipCard
-              key={index}
-              card={card}
-              icon={iconPath}
-              isOpaque={index < 3}
-              isFourth={isFourthCard}
-              isFifth={isFifthCard}
-              isThird={isThirdCard}
-            />
-            // </SwiperSlide>
+            <SwiperSlide key={index}>
+              <FlipCard
+                key={index}
+                card={card}
+                icon={iconPath}
+                isOpaque={index < 3}
+                isFourth={isFourthCard}
+                isFifth={isFifthCard}
+                isThird={isThirdCard}
+              />
+            </SwiperSlide>
           );
         } else {
           return (
-            // <SwiperSlide key={index}>
-            <Card
-              key={index}
-              {...card}
-              icon={iconPath}
-              isOpaque={index < 3}
-              isFourth={isFourthCard}
-              isFifth={isFifthCard}
-              isThird={isThirdCard}
-            />
-            // </SwiperSlide>
+            <SwiperSlide key={index}>
+              <Card
+                key={index}
+                {...card}
+                icon={iconPath}
+                isOpaque={index < 3}
+                isFourth={isFourthCard}
+                isFifth={isFifthCard}
+                isThird={isThirdCard}
+              />
+            </SwiperSlide>
           );
         }
       })}
-    </div>
-    // <SwiperSlide></SwiperSlide>
+    </Swiper>
   );
 }
-
-// export default Card;

@@ -7,7 +7,14 @@ interface SvgProps {
 }
 // { marketStatus, upText }: SvgProps
 
-export function UpIndicator() {
+export function UpIndicator({ marketStatus, upText }: SvgProps) {
+  // @ts-ignore
+  const text_up_style = {
+    fill: "#BDC2C4",
+    fontFamily: "'Roboto', sans-serif",
+    fontWeight: "bold",
+    fontSize: "20px",
+  };
   return (
     // <svg fill={marketStatus === "up" ? "green" : "neutralColor"}>
     //   {/* SVG for market going up */}
@@ -42,7 +49,7 @@ export function UpIndicator() {
           y="38%"
           dominant-baseline="middle"
           text-anchor="middle"
-          className="text_up_card_style"
+          style={text_up_style}
         >
           UP
         </text>
@@ -112,7 +119,31 @@ export function UpIndicator() {
 }
 // { marketStatus, downText }: SvgProps
 
-export function DownIndicator() {
+export function DownIndicator({ marketStatus, downText }: SvgProps) {
+  // @ts-ignore
+  const text_up_style = {
+    fill: "#white",
+    fontFamily: "'Roboto', sans-serif",
+    fontWeight: "bold",
+    fontSize: "18px",
+  };
+
+  // @ts-ignore
+  const prices = {
+    fill: "white",
+    fontFamily: "'Roboto', sans-serif",
+    fontWeight: "800",
+    fontSize: "12px",
+  };
+
+  // @ts-ignore
+  const payout = {
+    fill: "white",
+    fontFamily: "'Roboto', sans-serif",
+    fontSize: "13px",
+    fontWeight: "200",
+  };
+
   return (
     // <svg fill={marketStatus === "down" ? "purple" : "neutralColor"}>
     //   {/* SVG for market going down */}
@@ -147,7 +178,7 @@ export function DownIndicator() {
           y="30%"
           dominant-baseline="middle"
           text-anchor="middle"
-          className="prices_down_card"
+          style={prices}
         >
           {" "}
           8.17x{" "}
@@ -157,7 +188,7 @@ export function DownIndicator() {
           y="30%"
           dominant-baseline="middle"
           text-anchor="middle"
-          className="payout_down_card"
+          style={payout}
         >
           Payout
         </text>
@@ -166,7 +197,7 @@ export function DownIndicator() {
           y="60%"
           dominant-baseline="middle"
           text-anchor="middle"
-          className="text_down_card_style"
+          style={text_up_style}
         >
           DOWN
         </text>
@@ -221,12 +252,30 @@ function MarketIndicator({ marketStatus, upText, downText }: SvgProps) {
   return (
     <>
       {/* marketStatus={marketStatus} upText={upText} */}
-      <UpIndicator />
+      <UpIndicator marketStatus={marketStatus} upText={upText} />
 
       {/* marketStatus={marketStatus} downText={downText} */}
-      <DownIndicator />
+      <DownIndicator marketStatus={marketStatus} downText={downText} />
     </>
   );
 }
 
 export default MarketIndicator;
+
+// function getIndicatorType(marketStatus) {
+//     // Implement your logic here to determine whether marketStatus corresponds to 'up' or 'down'
+//   }
+
+//   function MarketIndicator({ marketStatus, upText, downText }: SvgProps) {
+//     const indicatorType = getIndicatorType(marketStatus);
+
+//     if (indicatorType === 'up') {
+//       return <UpIndicator marketStatus={marketStatus} upText={upText} />;
+//     } else if (indicatorType === 'down') {
+//       return <DownIndicator marketStatus={marketStatus} downText={downText} />;
+//     } else {
+//       return null; // or some default case
+//     }
+//   }
+
+//   export default MarketIndicator;
