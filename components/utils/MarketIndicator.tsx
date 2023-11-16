@@ -15,6 +15,23 @@ export function UpIndicator({ marketStatus, upText }: SvgProps) {
     fontWeight: "bold",
     fontSize: "20px",
   };
+
+  // @ts-ignore
+  const prices = {
+    fill: "#7b6ba7",
+    fontFamily: "'Roboto', sans-serif",
+    fontWeight: "800",
+    fontSize: "12px",
+  };
+
+  // @ts-ignore
+  const payout = {
+    fill: "#7b6ba7",
+    fontFamily: "'Roboto', sans-serif",
+    fontSize: "13px",
+    fontWeight: "200",
+  };
+
   return (
     // <svg fill={marketStatus === "up" ? "green" : "neutralColor"}>
     //   {/* SVG for market going up */}
@@ -58,7 +75,7 @@ export function UpIndicator({ marketStatus, upText }: SvgProps) {
           y="75%"
           dominant-baseline="middle"
           text-anchor="middle"
-          className="prices_up_card"
+          style={prices}
         >
           2.15x
         </text>{" "}
@@ -67,7 +84,7 @@ export function UpIndicator({ marketStatus, upText }: SvgProps) {
           y="75%"
           dominant-baseline="middle"
           text-anchor="middle"
-          className="payout_up_card"
+          style={payout}
         >
           Payout
         </text>{" "}
@@ -249,15 +266,13 @@ export function DownIndicator({ marketStatus, downText }: SvgProps) {
 }
 
 function MarketIndicator({ marketStatus, upText, downText }: SvgProps) {
-  if (marketStatus === "up") {
+  if (marketStatus === "1") {
     return <UpIndicator marketStatus={marketStatus} upText={upText} />;
-  } else if (marketStatus === "down") {
+  } else if (marketStatus === "-1") {
     return <DownIndicator marketStatus={marketStatus} downText={downText} />;
   } else {
     return null; // or some default case
   }
 }
-
-// you need to pass undefined or "" in MarketInbdicator() in card.tsx <Image />  check that
 
 export default MarketIndicator;

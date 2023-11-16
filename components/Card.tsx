@@ -18,10 +18,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
-import MarketIndicator, {
-  UpIndicator,
-  DownIndicator,
-} from "./utils/MarketIndicator";
+import MarketIndicator from "./utils/MarketIndicator";
 
 // Install the modules
 // SwiperCore.use([Navigation, Pagination, Mousewheel]);
@@ -373,24 +370,34 @@ const Card = ({
       <div className={`flex flex-col justify-center items-center mt-4`}>
         {!isFifth && (
           <div className={`-mb-[2px]`}>
-            <Image
-              // src="card_up_white.svg"
-              src={MarketIndicator("", "up")}
+            {/* <Image
+              src="card_up_white.svg"
               width={250}
               height={380}
               alt="image"
-            />
+            /> */}
+
+            {MarketIndicator({
+              marketStatus: "1",
+              upText: "up",
+              downText: "",
+            })}
           </div>
         )}
         {isFifth && (
           <div className={`-mb-[2px]`}>
-            <Image
-              // src="card_up_last.svg"
-              src={UpIndicator}
+            {/* <Image
+              src="card_up_last.svg"
               width={250}
               height={380}
               alt="image"
-            />
+            /> */}
+
+            {MarketIndicator({
+              marketStatus: "1",
+              upText: "up",
+              downText: "",
+            })}
           </div>
         )}
 
