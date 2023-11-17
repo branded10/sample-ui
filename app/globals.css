@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Urbanist&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 
 /* :root {
   
@@ -50,7 +50,8 @@ body {
 }
 
 .login_font {
-  font-family: 'Urbanist', sans-serif !important;
+  font-family: 'Poppins', sans-serif;
+
 }
 
 /* .flip-horizontal {
