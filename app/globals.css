@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Urbanist&display=swap');
+
 /* :root {
   
   overflow: scroll;
@@ -45,6 +47,10 @@ body {
 .scrollbar-hide {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+}
+
+.login_font {
+  font-family: 'Urbanist', sans-serif !important;
 }
 
 /* .flip-horizontal {
@@ -135,6 +141,8 @@ body {
     /* margin-left: 1000px; */
   }
 }
+
+
 
 /* .last-slide.swiper-slide-active {
   transform: translate3d(0, 0, 0) !important;

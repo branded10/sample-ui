@@ -4,19 +4,21 @@ import Image from "next/image"; // we need to config it in next.config.js,,, se 
 
 import React from "react";
 
+// bg-[#11a37f]
 const Login = () => {
   return (
-    <div className="bg-[#11a37f] h-screen flex flex-col items-center justify-center text-center">
+    <div className="bg-[#11364b] h-screen flex flex-col items-center justify-center text-center login_font">
       <Image
-        src="https://links.papareact.com/2i6"
-        width={300}
-        height={300}
+        src="/rupee_img.png"
+        width={500}
+        height={500}
         alt="logo"
+        className="-mt-48"
       />
-      <button className="text-white font-bold text-3xl animate-pulse">
+      <button className="text-white font-bold text-3xl -mt-10 login_font">
         <span
           onClick={() => signIn("google")}
-          className="bg-white text-green-500 rounded-md p-4"
+          className="bg-white text-green-500 rounded-2xl border-b-8 p-4 animate-pulse login_font"
         >
           Sign In
         </span>{" "}
