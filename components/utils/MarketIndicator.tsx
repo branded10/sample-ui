@@ -64,8 +64,8 @@ export function UpIndicator({ marketStatus, upText }: SvgProps) {
         <text
           x="50%"
           y="38%"
-          dominant-baseline="middle"
-          text-anchor="middle"
+          dominantBaseline="middle"
+          textAnchor="middle"
           style={text_up_style}
         >
           UP
@@ -73,8 +73,8 @@ export function UpIndicator({ marketStatus, upText }: SvgProps) {
         <text
           x="40%"
           y="75%"
-          dominant-baseline="middle"
-          text-anchor="middle"
+          dominantBaseline="middle"
+          textAnchor="middle"
           style={prices}
         >
           2.15x
@@ -82,8 +82,8 @@ export function UpIndicator({ marketStatus, upText }: SvgProps) {
         <text
           x="58%"
           y="75%"
-          dominant-baseline="middle"
-          text-anchor="middle"
+          dominantBaseline="middle"
+          textAnchor="middle"
           style={payout}
         >
           Payout
@@ -97,9 +97,9 @@ export function UpIndicator({ marketStatus, upText }: SvgProps) {
           width="224"
           height="62.9688"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+          <feFlood floodOpacity="0" result="BackgroundImageFix"></feFlood>
           <feBlend
             mode="normal"
             in="SourceGraphic"
@@ -193,8 +193,8 @@ export function DownIndicator({ marketStatus, downText }: SvgProps) {
         <text
           x="40%"
           y="30%"
-          dominant-baseline="middle"
-          text-anchor="middle"
+          dominantBaseline="middle"
+          textAnchor="middle"
           style={prices}
         >
           {" "}
@@ -203,8 +203,8 @@ export function DownIndicator({ marketStatus, downText }: SvgProps) {
         <text
           x="58%"
           y="30%"
-          dominant-baseline="middle"
-          text-anchor="middle"
+          dominantBaseline="middle"
+          textAnchor="middle"
           style={payout}
         >
           Payout
@@ -212,8 +212,8 @@ export function DownIndicator({ marketStatus, downText }: SvgProps) {
         <text
           x="50%"
           y="60%"
-          dominant-baseline="middle"
-          text-anchor="middle"
+          dominantBaseline="middle"
+          textAnchor="middle"
           style={text_up_style}
         >
           DOWN
@@ -227,7 +227,7 @@ export function DownIndicator({ marketStatus, downText }: SvgProps) {
           width="224"
           height="62.9688"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
           <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
           <feBlend
