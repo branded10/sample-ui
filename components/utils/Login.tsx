@@ -19,7 +19,7 @@ export default function Login() {
           </div>
 
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form className="space-y-6" action="#" method="POST">
+            <form className="space-y-6 mb-8" action="#" method="POST">
               <div>
                 <label
                   htmlFor="email"
@@ -80,20 +80,19 @@ export default function Login() {
               <div className="divider font-medium text-sm">
                 Or continue with
               </div>
-
-              <button
-                className="justify-center items-center w-full hover:bg-gray-100 border border-gray-200 transition-all ease-in-out delay-50 py-[10px] px-6 rounded-lg text-sm font-medium login_font flex gap-4"
-                onClick={() => signIn("google")}
-              >
-                <Image
-                  src="/google.svg"
-                  width={20}
-                  height={20}
-                  alt="google_logo"
-                />
-                <span className="text-black">Sign in with Google</span>{" "}
-              </button>
             </form>
+            <button
+              className="justify-center items-center w-full hover:bg-gray-100 border border-gray-200 transition-all ease-in-out delay-50 py-[10px] px-6 rounded-lg text-sm font-medium login_font flex gap-4"
+              onClick={() => signIn("google")}
+            >
+              <Image
+                src="/google.svg"
+                width={20}
+                height={20}
+                alt="google_logo"
+              />
+              <span className="text-black">Sign in with Google</span>{" "}
+            </button>
 
             {/* <p className="mt-10 text-center text-sm text-gray-500">
               Not a member?{" "}

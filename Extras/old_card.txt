@@ -82,12 +82,12 @@ const FrontCard = ({
     >
       <div
         className={`flex justify-between items-center px-4 py-2 ${
-          isFourth && "bg-[#ffffff] border-gray-200 shadow-md shadow-gray-200"
+          isFourth && "bg-[#7645D9]"
         }  rounded-t-[30px] overflow-hidden `}
       >
         <div className="flex items-center">
           <div>
-            <Image src={icon} width={20} height={20} alt="play" className="" />
+            <Image src={icon} width={20} height={20} alt="play" />
           </div>
           <div
             className={`ml-1 font-extrabold text-sm`}
@@ -97,7 +97,7 @@ const FrontCard = ({
           </div>
         </div>
 
-        <div className={`text-black font-medium`}>{cardNumber}</div>
+        <div className={`text-white font-medium`}>{cardNumber}</div>
       </div>
       {/* bg-[#e9e6ef] h-2.5 dark:bg-[#e9e6ef] */}
 
@@ -353,7 +353,7 @@ const Card = ({
         </div>
 
         <div
-          className={`text-[#000000] ${
+          className={`text-[#7836db] ${
             isOpaque && "text-[#c1c7d5]"
           } font-medium`}
         >
@@ -559,7 +559,7 @@ const cardsData = [
     pay2: "1.87x",
     liveText: "LIVE",
     txtColor: "",
-    borderColor: "",
+    borderColor: "#7836d3",
     innerBorderColor: "#ef449c",
     cardNumber: "#218486",
     lastPrice: "$225.8452",
@@ -571,7 +571,7 @@ const cardsData = [
     pay1: "1.35x",
     pay2: "3.84x",
     liveText: "Next",
-    txtColor: "#000",
+    txtColor: "#fff",
     borderColor: "#cfd3da",
     innerBorderColor: "#82c7ea",
     cardNumber: "#218487",

@@ -1,7 +1,8 @@
 import { SessionProvider } from "@/components/SessionProvider";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import Login from "@/components/Login";
+import Login from "@/components/utils/Login";
+import Register from "@/components/utils/Register";
 import { useSession } from "next-auth/react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
