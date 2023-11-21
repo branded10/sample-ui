@@ -13,7 +13,7 @@ const Wallet = (props: any) => (
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={82.667}
+      width={32.667}
       height={60.667}
       viewBox="0 0 512 512"
       {...props}
