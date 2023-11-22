@@ -3,6 +3,8 @@ import GoogleProvider from "next-auth/providers/google"
 import User from '@/mongodb/models/User'
 import { NextAuthOptions, User as UserType, Profile, Account } from "next-auth"
 import { JWT } from "next-auth/jwt"
+import jwt from 'jsonwebtoken';
+
 
 import connectDb from '@/mongodb/connect'
 
@@ -12,7 +14,14 @@ interface SignInArgs {
     account: Account | null,
     profile?: Profile,
     email?: string | { verificationRequest?: boolean },
-    credentials?: Record<string, unknown>,
+    // credentials?: Record<string, unknown>,
+    credentials?: {
+      name?: string,
+      email?: string,
+      password?: string,
+      phoneNumber?: string,
+      // country?: string
+    },
 }
 
 // For JWT
@@ -27,6 +36,15 @@ interface Token {
 
 interface Session {
     user: Token
+}
+
+interface UserDetails {
+  name?: string;
+  email?: string;
+  image?: string;
+  password?: string;
+  phoneNumber?: string;
+  // country?: string;
 }
 
 export const authOptions: NextAuthOptions = {
@@ -44,19 +62,39 @@ export const authOptions: NextAuthOptions = {
             console.log('User:', user);
             console.log('Profile:', profile);
       
+            let userDetails: UserDetails  = {};
+
             if (account && account.provider === 'google') {
-              const googleUser = {
-                name: user.name,
-                email: user.email,
-                image: user.image,
-              }
-              const existingUser = await User.findOne({ email: user.email })
-              if (existingUser) {
-                await User.updateOne({ email: user.email }, { $set: { name: googleUser.name, image: googleUser.image }})
-              } else {
-                await User.create(googleUser)
-              }
+              userDetails = {
+                name: user.name ? user.name : '',
+                email: user.email ? user.email : '',
+                image: user.image ? user.image : '',
+                // phoneNumber and country will be null
+              };
+            } else if (credentials) {
+              // This is a custom registration
+              userDetails = {
+                name: credentials.name || '',
+                email: credentials.email || '',
+                password: credentials.password || '',
+                phoneNumber: credentials.phoneNumber || '',
+                // country: credentials.country || ''
+              };
             }
+
+            // Creating JWT token
+    const token = jwt.sign(userDetails, process.env.JWT_SECRET!, { expiresIn: '1h' });
+
+    // Saving the token and other details in the user document
+    const existingUser = await User.findOne({ email: userDetails.email });
+        
+           
+    if (existingUser) {
+      await User.updateOne({ email: userDetails.email }, { $set: { ...userDetails, token } });
+    } else {
+      await User.create({ ...userDetails, token });
+    }
+  
             return true
           } catch (error) {
             console.error('Error in signIn callback:', error)

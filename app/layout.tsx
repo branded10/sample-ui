@@ -6,6 +6,8 @@ import Register from "@/components/utils/Register";
 import { useSession } from "next-auth/react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+// import { usePathname } from "next/navigation";
+import Navbar from "@/components/Navbar";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -22,6 +24,7 @@ export default async function RootLayout({
 }) {
   const session = await getServerSession(authOptions);
   console.log("Session = ", session);
+
   return (
     <html lang="en">
       <head>
@@ -35,7 +38,7 @@ export default async function RootLayout({
       </head>
       <body className={inter.className}>
         <SessionProvider session={session}>
-          {!session ? <Login /> : children}
+          {!session ? <Register /> : children}
         </SessionProvider>
       </body>
     </html>

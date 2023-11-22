@@ -4,19 +4,46 @@ import Image from "next/image";
 import { signIn } from "next-auth/react";
 
 export default function Register() {
-  const handleRegister = (e: any) => {
+  const handleRegister = async (e: any) => {
     e.preventDefault();
-    // Add your traditional registration logic here
+
+    // Collect form data
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData);
+
+    // Combine first name and last name into a single name field
+    data.name = data.firstName + " " + data.lastName;
+    delete data.firstName;
+    delete data.lastName;
+
+    // Rename email address field to match User schema
+    // data.email = data.emailAddress;
+    // delete data.emailAddress;
+
+    // Send POST request to your server
+    const response = await fetch("/api/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    // Handle response
+    if (response.ok) {
+      // Registration successful
+      const user = await response.json();
+      console.log(user);
+    } else {
+      // Registration failed
+      console.error("Registration failed");
+    }
   };
 
   return (
     <div className="lg:m-20">
       <div className="relative border border-gray-100 space-y-5 max-w-screen-md mx-auto rounded-md bg-white p-6 shadow-md lg:p-10">
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-          }}
-        >
+        <form onSubmit={handleRegister}>
           <h1 className="mb-6 text-xl font-bold lg:text-2xl">
             Create your Account
           </h1>
@@ -25,6 +52,7 @@ export default function Register() {
             <div>
               <label className=""> First Name </label>
               <input
+                name="firstName"
                 type="text"
                 placeholder="Your Name"
                 className="mt-2 h-12 w-full px-3 border border-gray-200 bg-gray-100 rounded-xl"
@@ -33,6 +61,7 @@ export default function Register() {
             <div>
               <label className=""> Last Name </label>
               <input
+                name="lastName"
                 type="text"
                 placeholder="Last  Name"
                 className="mt-2 h-12 w-full  px-3 border border-gray-200 bg-gray-100 rounded-xl"
@@ -42,6 +71,7 @@ export default function Register() {
           <div>
             <label className=""> Username </label>
             <input
+              name="username"
               type="text"
               placeholder="Username"
               className="mt-2 h-12 w-full   px-3 border border-gray-200 bg-gray-100 rounded-xl"
@@ -50,6 +80,7 @@ export default function Register() {
           <div>
             <label className=""> Email Address </label>
             <input
+              name="email"
               type="email"
               placeholder="Info@example.com"
               className="mt-2 h-12 w-full   px-3 border border-gray-200 bg-gray-100 rounded-xl"
@@ -58,6 +89,7 @@ export default function Register() {
           <div>
             <label className=""> Password </label>
             <input
+              name="password"
               type="password"
               placeholder="******"
               className="mt-2 h-12 w-full  px-3 border border-gray-200 bg-gray-100 rounded-xl"
@@ -114,6 +146,7 @@ export default function Register() {
                 </span>{" "}
               </label>
               <input
+                name="phoneNumber"
                 type="text"
                 placeholder="+543 5445 0543"
                 className="mt-2 h-12 w-full  px-3 border border-gray-200 bg-gray-100 rounded-xl"
@@ -132,8 +165,7 @@ export default function Register() {
         </div> */}
           <div>
             <button
-              type="button"
-              onClick={handleRegister}
+              type="submit"
               className="mt-5 w-full rounded-md bg-blue-600 p-2 text-center font-semibold text-white"
             >
               Get Started
