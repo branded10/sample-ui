@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/router";
 
 export default function Register() {
   const handleRegister = async (e: any) => {
@@ -34,6 +35,10 @@ export default function Register() {
       // Registration successful
       const user = await response.json();
       console.log(user);
+
+      // Redirect to homepage
+      const router = useRouter();
+      router.push("/");
     } else {
       // Registration failed
       console.error("Registration failed");
@@ -48,51 +53,51 @@ export default function Register() {
             Create your Account
           </h1>
 
-          <div className="grid gap-3 md:grid-cols-2">
+          <div className="grid gap-3 md:grid-cols-2 mb-8">
             <div>
-              <label className=""> First Name </label>
+              <label className="ml-2"> First Name </label>
               <input
                 name="firstName"
                 type="text"
                 placeholder="Your Name"
-                className="mt-2 h-12 w-full px-3 border border-gray-200 bg-gray-100 rounded-xl"
+                className="mt-2 h-12 w-full px-3 border border-gray-200 bg-gray-100 rounded-xl placeholder-gray"
               />
             </div>
             <div>
-              <label className=""> Last Name </label>
+              <label className="ml-2"> Last Name </label>
               <input
                 name="lastName"
                 type="text"
                 placeholder="Last  Name"
-                className="mt-2 h-12 w-full  px-3 border border-gray-200 bg-gray-100 rounded-xl"
+                className="mt-2 h-12 w-full  px-3 border border-gray-200 bg-gray-100 rounded-xl placeholder-gray"
               />
             </div>
           </div>
-          <div>
-            <label className=""> Username </label>
+          <div className="mb-8">
+            <label className="ml-2"> Username </label>
             <input
               name="username"
               type="text"
               placeholder="Username"
-              className="mt-2 h-12 w-full   px-3 border border-gray-200 bg-gray-100 rounded-xl"
+              className="mt-2 h-12 w-full   px-3 border border-gray-200 bg-gray-100 rounded-xl placeholder-gray"
             />
           </div>
-          <div>
-            <label className=""> Email Address </label>
+          <div className="mb-8">
+            <label className="ml-2"> Email Address </label>
             <input
               name="email"
               type="email"
               placeholder="Info@example.com"
-              className="mt-2 h-12 w-full   px-3 border border-gray-200 bg-gray-100 rounded-xl"
+              className="mt-2 h-12 w-full   px-3 border border-gray-200 bg-gray-100 rounded-xl placeholder-gray"
             />
           </div>
-          <div>
-            <label className=""> Password </label>
+          <div className="mb-8">
+            <label className="ml-2"> Password </label>
             <input
               name="password"
               type="password"
-              placeholder="******"
-              className="mt-2 h-12 w-full  px-3 border border-gray-200 bg-gray-100 rounded-xl"
+              placeholder="****************"
+              className="mt-2 h-12 w-full  px-3 border border-gray-200 bg-gray-100 rounded-xl placeholder-gray"
             />
           </div>
           <div className="grid gap-3 lg:grid-cols-2">
@@ -139,7 +144,7 @@ export default function Register() {
                   </div>
                 </div> */}
             <div>
-              <label className="">
+              <label className="ml-2">
                 {" "}
                 Phone: <span className="text-sm text-gray-400">
                   (optional)
@@ -149,7 +154,7 @@ export default function Register() {
                 name="phoneNumber"
                 type="text"
                 placeholder="+543 5445 0543"
-                className="mt-2 h-12 w-full  px-3 border border-gray-200 bg-gray-100 rounded-xl"
+                className="mt-2 h-12 w-full  px-3 border border-gray-200 bg-gray-100 rounded-xl placeholder-gray"
               />
             </div>
           </div>
@@ -166,15 +171,17 @@ export default function Register() {
           <div>
             <button
               type="submit"
-              className="mt-5 w-full rounded-md bg-blue-600 p-2 text-center font-semibold text-white"
+              className="mt-10 w-full rounded-md bg-blue-600 p-2 text-center font-semibold text-white"
             >
               Get Started
             </button>
           </div>
-          <div className="divider font-medium text-sm">Or continue with</div>
+          <div className="divider font-medium text-sm mt-10">
+            Or continue with
+          </div>
         </form>
         <button
-          className="justify-center items-center w-full hover:bg-gray-100 border border-gray-200 transition-all ease-in-out delay-50 py-[10px] px-6 rounded-lg text-sm font-medium login_font flex gap-4"
+          className="justify-center items-center w-full hover:bg-gray-100 border border-gray-200 transition-all ease-in-out delay-50 py-[10px] px-6 rounded-lg text-sm font-medium login_font flex gap-4 mt-10"
           onClick={() => signIn("google")}
         >
           <Image src="/google.svg" width={20} height={20} alt="google_logo" />

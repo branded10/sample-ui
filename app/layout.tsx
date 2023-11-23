@@ -6,7 +6,6 @@ import Register from "@/components/utils/Register";
 import { useSession } from "next-auth/react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-// import { usePathname } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import "./globals.css";
 
@@ -35,9 +34,22 @@ export default async function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
           rel="stylesheet"
         />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Rubik&display=swap"
+          rel="stylesheet"
+        />
       </head>
       <body className={inter.className}>
+        {/* <SessionProvider session={session}>
+          {!session ? <Login /> : children}
+        </SessionProvider> */}
+        {/* <Navbar />
+        {children} */}
+
         <SessionProvider session={session}>
+          {session ? <Navbar /> : null}
           {!session ? <Register /> : children}
         </SessionProvider>
       </body>

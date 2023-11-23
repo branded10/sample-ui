@@ -1,8 +1,31 @@
 "use client";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 
 export default function Login() {
+  const { data: session } = useSession();
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    const result = await signIn("credentials", {
+      email,
+      password,
+      callbackUrl: `${window.location.origin}`,
+    });
+
+    console.log("RESULT ========> ", result);
+
+    if (!result?.error) {
+      // Sign-in was successful, do something here...
+    } else {
+      // Sign-in failed, do something here...
+    }
+  };
+
   return (
     <>
       <div className="bg-[#f9fafb] flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8  items-center">
@@ -19,7 +42,12 @@ export default function Login() {
           </div>
 
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form className="space-y-6 mb-8" action="#" method="POST">
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-6 mb-8"
+              action="#"
+              method="POST"
+            >
               <div>
                 <label
                   htmlFor="email"

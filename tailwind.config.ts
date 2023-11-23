@@ -18,6 +18,7 @@ const config: Config = {
         nav_lg: "968px",
         nav_md: "576px",
         nav_sm: "385px",
+        wallet_md: "718px",
       },
     },
   },
