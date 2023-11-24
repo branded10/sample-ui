@@ -1,3 +1,4 @@
+import TransactionsList from "@/components/Transactions";
 import * as React from "react";
 
 // NOTE: TODO: make url like from localhost/wallet  to localhost/[...userId]/wallet or something like
@@ -21,12 +22,13 @@ const Wallet = () => (
       </div>
     </div>
     <div className="w-2/3 p-4 bg-[#fffcfcde]">
-      <div className="text-center text-3xl wallet_md:text-5xl text-[#02000096] mb-60">
+      <div className="text-center text-3xl wallet_md:text-5xl text-[#02000096] mb-20">
         Transactions
       </div>
-      <div className="text-center text-[#00000065]">
+      {/* <div className="text-center text-[#00000065]">
         No Transactions yet ...
-      </div>
+      </div> */}
+      <TransactionsList />
     </div>
   </div>
 );
