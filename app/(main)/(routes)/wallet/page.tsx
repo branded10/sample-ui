@@ -21,13 +21,14 @@ const Wallet = () => (
         </div>
       </div>
     </div>
-    <div className="w-2/3 p-4 bg-[#fffcfcde]">
+    <div className="w-2/3 p-4 bg-[#fffcfcde]  overflow-y-auto">
       <div className="text-center text-3xl wallet_md:text-5xl text-[#02000096] mb-20">
         Transactions
       </div>
       {/* <div className="text-center text-[#00000065]">
         No Transactions yet ...
       </div> */}
+
       <TransactionsList />
     </div>
   </div>

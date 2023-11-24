@@ -19,7 +19,9 @@ const config: Config = {
         nav_md: "576px",
         nav_sm: "385px",
         wallet_md: "718px",
+        trans_md: "800px"
       },
+      
     },
   },
   plugins: [require("daisyui"), require("@tailwindcss/forms")],
