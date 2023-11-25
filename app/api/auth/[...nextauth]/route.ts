@@ -7,6 +7,8 @@ import { NextAuthOptions, User as UserType, Profile, Account } from "next-auth";
 import { JWT } from "next-auth/jwt";
 import jwt from "jsonwebtoken";
 import bcrypt from 'bcrypt';
+import Cookies from 'cookies';
+
 
 import connectDb from "@/mongodb/connect";
 
@@ -74,11 +76,11 @@ export const authOptions: NextAuthOptions = {
         email: { label: "Email", type: "text" },
         password: {  label: "Password", type: "password" }
       },
-      authorize: async (credentials: any) => {
+      authorize: async (credentials: any, req:any, res:any) => {
         // const session = await getSession(context);
 
         const { email, password } = credentials
-
+        let userDetails = {} 
 
         // Find the user in your database
         const user = await User.findOne({ email })
@@ -88,6 +90,29 @@ export const authOptions: NextAuthOptions = {
           const isValidPassword = await bcrypt.compare(password, user.password)
           console.log("isValidPassword ===========> ", isValidPassword);
           
+          userDetails = {
+            name: credentials.name || "",
+            email: credentials.email || "",
+            password: credentials.password || "",
+            phoneNumber: credentials.phoneNumber || "",
+            // country: credentials.country || ''
+          };
+
+          // If the passwords match, create JWT token
+        const token = jwt.sign(userDetails, process.env.JWT_SECRET!, {
+          expiresIn: "1h",
+        });
+
+        // Set cookie with JWT token
+        const cookies = new Cookies(req, res);
+        cookies.set('token', token, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === 'production',
+          sameSite: 'lax',
+          maxAge: 60 * 60 * 24 * 7, // 1 week
+          path: '/',
+        });
+
 
           if (isValidPassword) {
             // If the passwords match, return the user object
@@ -115,6 +140,7 @@ export const authOptions: NextAuthOptions = {
       try {
         console.log("User:", user);
         console.log("Profile:", profile);
+        console.log("Credentials:", credentials);
 
         let userDetails: UserDetails = {};
 
@@ -158,6 +184,10 @@ export const authOptions: NextAuthOptions = {
         console.error("Error in signIn callback:", error);
         throw error;
       }
+    },
+    session: async ({ session, user }) => {
+      session.user = user;
+      return Promise.resolve(session);
     },
     // async jwt(token, user, account, profile, isNewUser) {
     //   if (user) {

@@ -39,6 +39,7 @@ export async function POST(req: Request) {
       throw new Error("JWT Secret is undefined");
     }
     const token = jwt.sign({ userId: user._id }, secret, { expiresIn: "1h" });
+    
 
     // Return user data and token
     return new NextResponse(JSON.stringify({ user, token }));

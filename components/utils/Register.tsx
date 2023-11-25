@@ -2,9 +2,12 @@
 
 import Image from "next/image";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
+import { register } from "module";
 
 export default function Register() {
+  const router = useRouter();
+
   const handleRegister = async (e: any) => {
     e.preventDefault();
 
@@ -37,7 +40,7 @@ export default function Register() {
       console.log(user);
 
       // Redirect to homepage
-      const router = useRouter();
+
       router.push("/");
     } else {
       // Registration failed
