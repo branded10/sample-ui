@@ -237,11 +237,11 @@ const TransactionsList = () => {
           No Transactions yet ...
         </div>
       )}
-      <div className="join mt-5">
+      <div className="join mt-5 shadow-md shadow-gray-400 text-white">
         {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
           <input
             key={page}
-            className="join-item btn btn-square"
+            className="join-item btn btn-square bg-[#f2f2f2] border-none"
             type="radio"
             name="options"
             aria-label={page.toString()}

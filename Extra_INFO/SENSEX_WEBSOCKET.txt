@@ -2,7 +2,7 @@
 //-------------> https://github.com/upstox/upstox-python/blob/master/examples/websocket/market_data/websocket_client.py
 
 //NOTE: -> NodeJS implementation ---> https://github.com/upstox/upstox-nodejs/tree/master/examples/websocket/market_data 
-// --------------> 
+// --------------> https://github.com/upstox/upstox-nodejs/blob/master/examples/websocket/market_data/websocket_client.js
 
 // Import the upstox-js-sdk module
 import Upstox from "upstox-js-sdk";

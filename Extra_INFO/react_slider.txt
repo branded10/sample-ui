@@ -158,7 +158,3 @@ Remember, this is a basic example and might not cover all edge cases. You might 
  The CustomSwiper and Slide components I provided will create a slider that you can scroll through using the mouse wheel or by clicking and dragging with the mouse. The mousedown, mousemove, and mouseup events handle the click-and-drag functionality, while the wheel event handles the mouse scroll functionality.
 
 Remember, this is a basic example and might not cover all edge cases. You might need to adjust it according to your needs. If you’re developing a large application, consider using or creating a library to handle touch gestures in a more robust way. 
-
-
-
-

@@ -44,6 +44,7 @@ interface CardProps {
   isThird?: boolean;
   handleFlip?: () => void;
   buttonClicked?: string;
+  setButtonClicked?: string;
   handleUpClick?: () => void;
   handleDownClick?: () => void;
 }
@@ -167,16 +168,35 @@ const BackCard = ({
   icon,
   handleFlip,
   buttonClicked,
+  setButtonClicked,
 }: CardProps) => {
   const [value, setValue] = useState("");
 
   const handleChange = (event: any) => {
-    setValue(event.target.value);
+    const inputValue = event.target.value;
+    const decimalPointIndex = inputValue.indexOf(".");
+    if (decimalPointIndex !== -1) {
+      // if there is a decimal point
+      const integerPart = inputValue.substring(0, decimalPointIndex);
+      const decimalPart = inputValue.substring(decimalPointIndex + 1);
+      if (
+        !isNaN(inputValue) &&
+        integerPart.length <= 10 &&
+        decimalPart.length <= 4
+      ) {
+        setValue(inputValue);
+      }
+    } else {
+      // if there is no decimal point
+      if (!isNaN(inputValue) && inputValue.length <= 10) {
+        setValue(inputValue);
+      }
+    }
   };
 
   return (
     <div
-      className={`w-[320px] h-[382px] -mt-[3px] bg-white rounded-[30px] border-[2px] border-b-[5px] border-red-500 ${
+      className={`w-[320px] h-[382px] -mt-[0px] bg-white rounded-[30px] border-[2px] border-b-[5px] border-red-500 ${
         isOpaque && "opacity-50"
       }`}
       style={{ borderColor: borderColor }}
@@ -199,7 +219,10 @@ const BackCard = ({
         </div>
 
         <div
-          className={`flex ${
+          onClick={() =>
+            setButtonClicked(buttonClicked === "up" ? "down" : "up")
+          }
+          className={`cursor-pointer flex ${
             buttonClicked === "up" ? "bg-[#31d0aa]" : "bg-[#ed4b9e]"
           } rounded-md p-1 px-2 text-white text-xs justify-center items-center`}
         >
@@ -227,13 +250,12 @@ const BackCard = ({
         <div className="self-center">
           <input
             type="text"
-            pattern="^[0-9]*[.,]?[0-9]{0,18}$"
-            inputMode="decimal"
-            min="0"
+            // pattern="^\d{1,10}$"
+            // inputMode="decimal"
             placeholder="0.0"
             value={value}
             onChange={handleChange}
-            className="px-4 py-4 w-64 bg-gray-200 rounded-xl shadow-inner focus:outline-none focus:ring-0"
+            className="px-4 py-4 w-64 text-black bg-gray-200 rounded-xl shadow-inner focus:outline-none focus:ring-0"
             style={{ textAlign: "right" }}
           />
         </div>
@@ -289,6 +311,7 @@ const FlipCard = ({ card, icon, isOpaque, isFourth }: FlipCardProps) => {
                 isOpaque,
                 handleFlip,
                 buttonClicked,
+                setButtonClicked,
               })}
             </div>
             {/* <button className="flip-button" onClick={handleFlip}>
