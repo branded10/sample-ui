@@ -1,20 +1,22 @@
 // /api/register.js
 
+import { serialize } from 'cookie'
+
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "@/mongodb/models/User";
-import { NextResponse } from "next/server";
+import { NextRequest,NextResponse } from "next/server";
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest, res: NextResponse) {
   if (req.method === "POST") {
     // Extract user data from request body
     const body = await req.json();
     const { name, email, password, phoneNumber } = body;
 
-    console.log("Request Body:", body);
+    console.log("Request Body from register/route.ts:", body);
 
     // Check if required fields are provided
-    if (!name || !email) {
+    if (!name || !email || !password) {
       // return res.status(400).json({ error: 'Name and email are required' });
       return new NextResponse("Name and email are required", { status: 400 });
     }
@@ -39,6 +41,17 @@ export async function POST(req: Request) {
       throw new Error("JWT Secret is undefined");
     }
     const token = jwt.sign({ userId: user._id }, secret, { expiresIn: "1h" });
+
+    console.log("TOKEN from register/route.ts =============> ",token);
+
+    res.cookies.set('token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV !== 'development',
+      sameSite: 'strict',
+      maxAge: 3600,
+      path: '/'
+    })
+    
     
 
     // Return user data and token
