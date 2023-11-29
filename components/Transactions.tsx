@@ -137,6 +137,8 @@ const TransactionsList = () => {
     <>
       {transactions.length > 0 ? (
         transactions
+          .sort((a: any, b: any) => b.date - a.date)
+          // .sort((a: any, b: any) => b.id - a.id) Dont use id, its not good idea
           .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
           .map((transaction) => (
             <div

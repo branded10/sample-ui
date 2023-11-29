@@ -2,7 +2,10 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+// import { Swiper, SwiperSlide } from "swiper/react";
+
+import Swiper from "react-id-swiper";
+import "swiper/css/swiper.css";
 
 import SwiperCore, {
   Navigation,
@@ -669,7 +672,7 @@ export default function Cards() {
         sensitivity: 0.5, // Reduce the sensitivity of the mouse wheel
         eventsTarget: ".swiper-container", // Detect mouse wheel events on the swiper container
       }}
-      style={{ width: "100%", height: "1000px", paddingTop: "200px" }}
+      style={{ width: "100%" }}
       // install Swiper modules
       modules={[Navigation, Pagination, Scrollbar, A11y]}
       centeredSlides={true}

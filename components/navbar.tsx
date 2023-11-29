@@ -109,7 +109,8 @@ function Navbar() {
               <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
-          <Popover.Group className="hidden lg:flex lg:gap-x-12">
+
+          <Popover.Group className="mr-52 hidden lg:flex lg:gap-x-12">
             <Popover className="relative">
               <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
                 Product
@@ -194,18 +195,21 @@ function Navbar() {
               Company
             </Link>
           </Popover.Group>
-          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            {/* <Link href="#" className="text-sm font-semibold leading-6 text-gray-900">
+          <Link
+            href="/wallet"
+            className="lg:flex hidden rounded-md border border-transparent bg-indigo-600 px-8 mr-28 py-2 text-center font-medium text-white hover:bg-indigo-700"
+          >
+            $10,525.00
+          </Link>
+          <div className="hidden lg:flex">
+            <SignOutButton />
+          </div>
+
+          {/* <Link href="#" className="text-sm font-semibold leading-6 text-gray-900">
               Log in <span aria-hidden="true">&rarr;</span>
             </Link> */}
-            <Link
-              href="/wallet"
-              className="flex rounded-md border border-transparent bg-indigo-600 px-8 mr-4 py-2 text-center font-medium text-white hover:bg-indigo-700"
-            >
-              $ 10,525.00
-            </Link>
-          </div>
         </nav>
+
         <Dialog
           as="div"
           className="lg:hidden"
@@ -300,10 +304,6 @@ function Navbar() {
             </div>
           </Dialog.Panel>
         </Dialog>
-        <div className="flex-row hidden lg:flex">
-          {/* <Wallet /> */}
-          <SignOutButton />
-        </div>
       </header>
     </>
   );
