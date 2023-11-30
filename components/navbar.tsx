@@ -199,7 +199,7 @@ function Navbar() {
             href="/wallet"
             className="lg:flex hidden rounded-md border border-transparent bg-indigo-600 px-8 mr-28 py-2 text-center font-medium text-white hover:bg-indigo-700"
           >
-            $10,525.00
+            <button className="cursor-pointer">$10,525.00</button>
           </Link>
           <div className="hidden lg:flex">
             <SignOutButton />

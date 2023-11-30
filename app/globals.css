@@ -113,12 +113,14 @@ body {
 .flip-card-front {
   /* background-color: #d7fbda; */
   color: green;
+  z-index: 2;
 }
 
 .flip-card-back {
   /* background-color: #fbd7f8; */
   /* color: blue; */
   transform: rotateY(-180deg);
+  z-index: 1;
 }
 
 /* .card-content {
@@ -230,5 +232,4 @@ input.placeholder-gray::placeholder {
 [type='radio']:focus {
   outline: none !important;
 }
-
 

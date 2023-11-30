@@ -2,10 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-// import { Swiper, SwiperSlide } from "swiper/react";
-
-import Swiper from "react-id-swiper";
-import "swiper/css/swiper.css";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 import SwiperCore, {
   Navigation,
@@ -200,7 +197,7 @@ const BackCard = ({
 
   return (
     <div
-      className={`w-[320px] h-[382px] -mt-[0px] bg-white rounded-[30px] border-[2px] border-b-[5px] border-red-500 ${
+      className={`w-[320px] h-[410px] -mt-[20px] bg-white rounded-[30px] border-[2px] border-b-[5px] border-red-500 ${
         isOpaque && "opacity-50"
       }`}
       style={{ borderColor: borderColor }}
@@ -355,8 +352,7 @@ const Card = ({
       className={`w-[320px] ${isFifth ? "h-[305px] mt-10" : "h-[372px]"} ${
         isThird ? "h-[372px]" : ""
       } bg-white rounded-[30px] border-[2px] border-b-[5px] ${
-        isOpaque &&
-        "opacity-50 hover:opacity-100 transition-all ease-in-out duration-300 delay-100"
+        isOpaque && "opacity-50 hover:opacity-100"
       }`}
       style={{ borderColor: borderColor }}
     >
@@ -672,7 +668,7 @@ export default function Cards() {
         sensitivity: 0.5, // Reduce the sensitivity of the mouse wheel
         eventsTarget: ".swiper-container", // Detect mouse wheel events on the swiper container
       }}
-      style={{ width: "100%" }}
+      style={{ width: "100%", height: "1000px", paddingTop: "200px" }}
       // install Swiper modules
       modules={[Navigation, Pagination, Scrollbar, A11y]}
       centeredSlides={true}

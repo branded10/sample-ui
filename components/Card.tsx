@@ -197,7 +197,7 @@ const BackCard = ({
 
   return (
     <div
-      className={`w-[320px] h-[382px] -mt-[0px] bg-white rounded-[30px] border-[2px] border-b-[5px] border-red-500 ${
+      className={`w-[320px] h-[410px] -mt-[20px] bg-white rounded-[30px] border-[2px] border-b-[5px] border-red-500 ${
         isOpaque && "opacity-50"
       }`}
       style={{ borderColor: borderColor }}
@@ -352,8 +352,7 @@ const Card = ({
       className={`w-[320px] ${isFifth ? "h-[305px] mt-10" : "h-[372px]"} ${
         isThird ? "h-[372px]" : ""
       } bg-white rounded-[30px] border-[2px] border-b-[5px] ${
-        isOpaque &&
-        "opacity-50 hover:opacity-100 transition-all ease-in-out duration-300 delay-100"
+        isOpaque && "opacity-50 hover:opacity-100"
       }`}
       style={{ borderColor: borderColor }}
     >
