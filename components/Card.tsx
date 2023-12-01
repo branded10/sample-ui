@@ -668,7 +668,7 @@ export default function Cards() {
         sensitivity: 0.5, // Reduce the sensitivity of the mouse wheel
         eventsTarget: ".swiper-container", // Detect mouse wheel events on the swiper container
       }}
-      style={{ width: "100%", height: "1000px", paddingTop: "200px" }}
+      style={{ width: "100%", height: "400px", paddingTop: "10px" }}
       // install Swiper modules
       modules={[Navigation, Pagination, Scrollbar, A11y]}
       centeredSlides={true}
