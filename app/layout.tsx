@@ -1,6 +1,7 @@
+import { NextAuthProvider } from "./providers";
 import { SessionProvider } from "@/components/SessionProvider";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/auth";
 import Login from "@/components/utils/Login";
 import Register from "@/components/utils/Register";
 import { useSession } from "next-auth/react";
@@ -22,8 +23,8 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const session = await getServerSession(authOptions);
-  console.log("Sessionsss = ", session);
 
+  console.log("Sessionsss Route ====== ", session);
   return (
     <html lang="en">
       <head>
@@ -48,10 +49,14 @@ export default async function RootLayout({
         {/* <Navbar />
         {children} */}
 
-        <SessionProvider session={session}>
+        {/* <SessionProvider session={session}>
           {session ? <Navbar /> : null}
           {!session ? <Register /> : children}
-        </SessionProvider>
+        </SessionProvider> */}
+        <NextAuthProvider>
+          {session ? <Navbar /> : null}
+          {!session ? <Register /> : children}
+        </NextAuthProvider>
       </body>
     </html>
   );

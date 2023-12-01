@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useRef } from "react";
 
 import SwiperCore, {
   Navigation,

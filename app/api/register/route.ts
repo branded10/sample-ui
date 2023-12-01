@@ -44,13 +44,13 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
     console.log("TOKEN from register/route.ts =============> ",token);
 
-    res.cookies.set('token', token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV !== 'development',
-      sameSite: 'strict',
-      maxAge: 3600,
-      path: '/'
-    })
+    // res.cookies.set('token', token, {
+    //   httpOnly: true,
+    //   secure: process.env.NODE_ENV !== 'development',
+    //   sameSite: 'strict',
+    //   maxAge: 3600,
+    //   path: '/'
+    // })
     
     
 
