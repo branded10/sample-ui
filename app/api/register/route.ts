@@ -18,7 +18,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
     // Check if required fields are provided
     if (!name || !email || !password) {
       // return res.status(400).json({ error: 'Name and email are required' });
-      return new NextResponse("Name and email are required", { status: 400 });
+      return new NextResponse("Name and email and password are required", { status: 400 });
     }
 
     // Hash the password

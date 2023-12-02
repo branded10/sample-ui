@@ -618,6 +618,10 @@ const cardsData = [
 ];
 
 export default function Cards() {
+  const [slidesPerView, setSlidesPerView] = useState(0);
+  const [spaceBetween, setSpaceBetween] = useState(0);
+  const [initialSlide, setInitialSlide] = useState(0);
+
   const liveTextIconMap = {
     LIVE: "cardplay.svg",
     Expired: "expired.svg",
@@ -625,41 +629,60 @@ export default function Cards() {
     Later: "timer.svg",
   };
 
-  // const [zoomLevel, setZoomLevel] = useState(window.devicePixelRatio);
-  // const [slidesPerView, setSlidesPerView] = useState(3);
+  useEffect(() => {
+    const handleResize = () => {
+      const windowWidth = window.innerWidth;
+      const zoomLevel = window.devicePixelRatio;
 
-  // const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+      // if (windowWidth >= 640 && zoomLevel > 1.25) {
+      //   setSlidesPerView(5);
+      //   setSpaceBetween(30);
+      //   setInitialSlide(5);
+      // } else if (windowWidth >= 480 && zoomLevel > 0.75) {
+      //   setSlidesPerView(5.5);
+      //   setSpaceBetween(1);
+      //   setInitialSlide(3);
+      // } else {
+      //   setSlidesPerView(15);
+      //   setSpaceBetween(8);
+      //   setInitialSlide(10);
+      // }
+      if (windowWidth >= 1629) {
+        setSlidesPerView(4.9);
+        setSpaceBetween(30);
+        // setInitialSlide(10);
+      } else if (windowWidth >= 1200) {
+        setSlidesPerView(3.5);
+        setSpaceBetween(1);
+        // setInitialSlide(3);
+      } else if (windowWidth >= 1024) {
+        setSlidesPerView(2.5);
+        setSpaceBetween(1);
+        // setInitialSlide(3);
+      } else if (windowWidth >= 845) {
+        setSlidesPerView(2.1);
+        setSpaceBetween(1);
+        // setInitialSlide(3);
+      } else if (windowWidth >= 640) {
+        setSlidesPerView(1.9);
+        setSpaceBetween(1);
+        // setInitialSlide(3);
+      } else if (windowWidth >= 200) {
+        setSlidesPerView(0.6);
+        setSpaceBetween(1);
+        // setInitialSlide(3);
+      } else {
+        setSlidesPerView(0.6);
+        setSpaceBetween(8);
+        // setInitialSlide(10);
+      }
+    };
 
-  // useEffect(() => {
-  //   const handleResize = () => setWindowWidth(window.innerWidth);
-  //   window.addEventListener("resize", handleResize);
-  //   return () => window.removeEventListener("resize", handleResize);
-  // }, []);
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Call the function initially to set the state
 
-  // let slidesPerView;
-  // if (windowWidth >= 640) {
-  //   slidesPerView = 5;
-  // } else if (windowWidth >= 480) {
-  //   slidesPerView = 3;
-  // } else {
-  //   slidesPerView = 1;
-  // }
-
-  // useEffect(() => {
-  //   if (zoomLevel <= 0.75) {
-  //     setSlidesPerView(1);
-  //   } else if (zoomLevel <= 1.25) {
-  //     setSlidesPerView(2);
-  //   } else {
-  //     setSlidesPerView(3);
-  //   }
-  // }, [zoomLevel]);
-
-  // useEffect(() => {
-  //   const handleResize = () => setZoomLevel(window.devicePixelRatio);
-  //   window.addEventListener("resize", handleResize);
-  //   return () => window.removeEventListener("resize", handleResize);
-  // }, []);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <Swiper
@@ -673,19 +696,20 @@ export default function Cards() {
       // install Swiper modules
       modules={[Navigation, Pagination, Scrollbar, A11y]}
       centeredSlides={true}
-      spaceBetween={25}
-      initialSlide={4}
-      slidesPerView={5}
+      slidesPerView={slidesPerView}
+      spaceBetween={spaceBetween}
+      // initialSlide={6}
       // navigation
       // centeredSlidesBounds={true}
       // pagination={{ clickable: true }}
       // scrollbar={{ draggable: true }}
       onSwiper={(swiper) => console.log(swiper)}
       onSlideChange={() => console.log("slide change")}
+      className="w-full flex bg-gray-950 gap-10"
     >
       <SwiperSlide></SwiperSlide>
-      {/* <SwiperSlide></SwiperSlide>
-      <SwiperSlide></SwiperSlide> */}
+      {/* <SwiperSlide></SwiperSlide> */}
+      {/* <SwiperSlide></SwiperSlide> */}
 
       {cardsData.map((card, index) => {
         const iconPath =
@@ -697,7 +721,10 @@ export default function Cards() {
 
         if (index === 4) {
           return (
-            <SwiperSlide key={index}>
+            <SwiperSlide
+              key={index}
+              style={{ width: "calc(100% / 5 - 1rem)", margin: "0.5rem" }}
+            >
               <div className="card">
                 <FlipCard
                   key={index}
@@ -714,7 +741,7 @@ export default function Cards() {
         } else {
           return (
             <SwiperSlide key={index}>
-              <div className="card">
+              <div className="card gap-10">
                 <Card
                   key={index}
                   {...card}
