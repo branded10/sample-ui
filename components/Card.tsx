@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+
 import { useRef } from "react";
 
 import SwiperCore, {
@@ -622,6 +623,8 @@ export default function Cards() {
   const [spaceBetween, setSpaceBetween] = useState(0);
   const [initialSlide, setInitialSlide] = useState(0);
 
+  const swiperRef = useRef(null);
+
   const liveTextIconMap = {
     LIVE: "cardplay.svg",
     Expired: "expired.svg",
@@ -648,13 +651,13 @@ export default function Cards() {
       //   setInitialSlide(10);
       // }
       if (windowWidth >= 1629) {
-        setSlidesPerView(4.9);
-        setSpaceBetween(30);
-        // setInitialSlide(10);
+        setSlidesPerView(5);
+        setSpaceBetween(5);
+        setInitialSlide(3);
       } else if (windowWidth >= 1200) {
-        setSlidesPerView(3.5);
-        setSpaceBetween(1);
-        // setInitialSlide(3);
+        setSlidesPerView(5);
+        setSpaceBetween(5);
+        setInitialSlide(3);
       } else if (windowWidth >= 1024) {
         setSlidesPerView(2.5);
         setSpaceBetween(1);
@@ -696,16 +699,21 @@ export default function Cards() {
       // install Swiper modules
       modules={[Navigation, Pagination, Scrollbar, A11y]}
       centeredSlides={true}
-      slidesPerView={slidesPerView}
-      spaceBetween={spaceBetween}
-      // initialSlide={6}
+      // slidesPerView={slidesPerView}
+      // spaceBetween={spaceBetween}
+      // initialSlide={initialSlide}
+      slidesPerView={5}
+      spaceBetween={5}
+      initialSlide={3}
       // navigation
       // centeredSlidesBounds={true}
       // pagination={{ clickable: true }}
       // scrollbar={{ draggable: true }}
+      // bg-gray-950
       onSwiper={(swiper) => console.log(swiper)}
+      // onSwiper={(swiper) => (swiperRef.current = swiper)}
       onSlideChange={() => console.log("slide change")}
-      className="w-full flex bg-gray-950 gap-10"
+      className="w-full flex  gap-10"
     >
       <SwiperSlide></SwiperSlide>
       {/* <SwiperSlide></SwiperSlide> */}
